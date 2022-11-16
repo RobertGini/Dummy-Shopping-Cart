@@ -4,9 +4,16 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class ProductEntity(
-    val product_id: Int = 0,
+    val product_id: String = "",
     val product_title: String = "",
-    val product_price: Int = 0,
+    val product_price: String = "",
     val product_description: String = "",
     val product_images: String = "",
-)
+) : DelegateAdapterItem {
+    override fun id(): Any = product_id
+
+    override fun content(): Any {
+        TODO("Not yet implemented")
+    }
+
+}

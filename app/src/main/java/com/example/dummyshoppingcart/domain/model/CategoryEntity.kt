@@ -1,5 +1,8 @@
 package com.example.dummyshoppingcart.domain.model
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class CategoryEntity(
     val category_id: Int = 0,
     val category_name: String = "",

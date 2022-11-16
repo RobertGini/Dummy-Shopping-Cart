@@ -79,6 +79,10 @@ dependencies {
     kapt "com.google.dagger:dagger-compiler:2.44"
     kapt "com.google.dagger:dagger-android-processor:2.44"
 
+    //Adapter delegate
+    implementation 'com.hannesdorfmann:adapterdelegates4:4.3.0'
+    implementation 'com.hannesdorfmann:adapterdelegates4-kotlin-dsl-viewbinding:4.3.0'
+
     //Tests
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

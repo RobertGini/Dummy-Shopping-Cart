@@ -22,9 +22,9 @@ class ResponseDataMapper @Inject constructor() {
     @Provides
     fun mapProduct(response: ProductResponse): ProductEntity {
         return ProductEntity(
-            product_id = response.product_id!!,
+            product_id = response.product_id.toString(),
             product_title = response.product_title.toString(),
-            product_price = response.product_price!!,
+            product_price = response.product_price.toString(),
             product_description = response.product_description.toString(),
             product_images = response.product_images?.map { it }.toString()
         )

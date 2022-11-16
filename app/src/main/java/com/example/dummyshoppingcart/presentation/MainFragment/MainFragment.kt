@@ -36,8 +36,8 @@ class MainFragment : DaggerFragment(R.layout.fragment_main) {
     }
 
     private fun setupObservers() {
-        mainViewModel.getDataOfProducts().observe(viewLifecycleOwner) {
-            binding.greet.text = it.product_title
+        mainViewModel.getDataOfCategory().observe(viewLifecycleOwner) {
+            binding.greet.text = it.category_name
         }
     }
 

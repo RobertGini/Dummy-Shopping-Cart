@@ -12,4 +12,8 @@ class MainViewModel @Inject constructor(
     fun getDataOfProducts() = liveData(Dispatchers.IO) {
         emit(repository.getAllProducts())
     }
+
+    fun getDataOfCategory() = liveData(Dispatchers.IO) {
+        emit(repository.getAllCategories())
+    }
 }

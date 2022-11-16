@@ -12,7 +12,7 @@ import javax.inject.Singleton
 
 @Module
 class NetworkModule {
-    private val baseUrl = "https://fakestoreapi.com/"
+    private val baseUrl = "https://api.escuelajs.co/api/v1/"
 
 //    private val loggingInterceptor = HttpLoggingInterceptor().apply {
 //        level = HttpLoggingInterceptor.Level.BODY

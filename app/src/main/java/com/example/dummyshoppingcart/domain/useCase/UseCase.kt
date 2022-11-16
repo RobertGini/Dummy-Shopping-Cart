@@ -1,5 +1,7 @@
 package com.example.dummyshoppingcart.domain.useCase
 
-interface UseCase<R> {
-    suspend fun getAllProducts() : R
+interface UseCase<Any> {
+    suspend fun getAllProducts() : Any
+
+    suspend fun getAllCategories() : Any
 }

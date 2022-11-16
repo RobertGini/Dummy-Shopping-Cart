@@ -1,7 +1,6 @@
 package com.example.dummyshoppingcart.presentation.CatalogueFragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,9 +8,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.example.dummyshoppingcart.R
 import com.example.dummyshoppingcart.databinding.FragmentCatalogueBinding
-import com.example.dummyshoppingcart.databinding.FragmentMainBinding
-import com.example.dummyshoppingcart.presentation.MainFragment.MainFragment
-import com.example.dummyshoppingcart.presentation.MainFragment.MainViewModel
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 

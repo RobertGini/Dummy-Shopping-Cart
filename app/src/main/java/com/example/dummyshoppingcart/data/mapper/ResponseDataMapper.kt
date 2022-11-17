@@ -14,8 +14,8 @@ class ResponseDataMapper @Inject constructor() {
 
     @Singleton
     @Provides
-    fun mappingProductResponse(response: List<ProductResponse>): ProductEntity {
-        return response.map { mapProduct(response[0]) }[0]
+    fun mappingProductResponse(response: List<ProductResponse>): List<ProductEntity> {
+        return response.map { mapProduct(it) }
     }
 
     @Singleton
@@ -26,14 +26,14 @@ class ResponseDataMapper @Inject constructor() {
             product_title = response.product_title.toString(),
             product_price = response.product_price.toString(),
             product_description = response.product_description.toString(),
-            product_images = response.product_images?.map { it }.toString()
+            product_images = response.product_images!!
         )
     }
 
     @Singleton
     @Provides
-    fun mappingCategoryResponse(response: List<CategoryResponse>): CategoryEntity {
-        return response.map { mapCategory(response[0]) }[0]
+    fun mappingCategoryResponse(response: List<CategoryResponse>): List<CategoryEntity> {
+        return response.map { mapCategory(it) }
     }
 
     @Singleton

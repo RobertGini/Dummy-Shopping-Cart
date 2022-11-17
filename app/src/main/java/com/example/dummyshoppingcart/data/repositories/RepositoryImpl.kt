@@ -13,6 +13,7 @@ class RepositoryImpl @Inject constructor(
     override suspend fun getAllProducts() =
         mapper.mappingProductResponse(apiService.getAllProducts())
 
-    override suspend fun getAllCategories(): CategoryEntity =
+    override suspend fun getAllCategories() =
         mapper.mappingCategoryResponse(apiService.getAllCategories())
+
 }

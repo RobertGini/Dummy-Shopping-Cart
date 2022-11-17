@@ -11,7 +11,7 @@ internal class DelegateAdapterItemDiffCallback: DiffUtil.ItemCallback<DelegateAd
 
     @SuppressLint("DiffUtilEquals")
     override fun areContentsTheSame(oldItem: DelegateAdapterItem, newItem: DelegateAdapterItem): Boolean =
-        oldItem.content() == newItem.content()
+        oldItem.id() == newItem.id()
 
     override fun getChangePayload(oldItem: DelegateAdapterItem, newItem: DelegateAdapterItem): Any =
         oldItem.payload(newItem)

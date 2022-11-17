@@ -25,6 +25,21 @@ class CompositeAdapter(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) =
         onBindViewHolder(holder, position, mutableListOf())
 
+    override fun onBindViewHolder(
+        holder: RecyclerView.ViewHolder,
+        position: Int,
+        payloads: MutableList<Any>
+    ) {
+        val delegateAdapter = delegates[getItemViewType(position)]
+
+        if (delegateAdapter != null) {
+            val delegatePayloads = payloads.map { it as DelegateAdapterItem.Payloadable }
+            delegateAdapter.bindViewHolder(getItem(position), holder, delegatePayloads)
+        } else {
+            throw NullPointerException("can not find adapter for position $position")
+        }
+    }
+
     class Builder {
 
         private var count: Int = 0

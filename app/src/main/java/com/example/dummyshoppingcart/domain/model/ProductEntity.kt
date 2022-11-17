@@ -8,12 +8,8 @@ data class ProductEntity(
     val product_title: String = "",
     val product_price: String = "",
     val product_description: String = "",
-    val product_images: String = "",
+    val product_images: List<String>,
 ) : DelegateAdapterItem {
     override fun id(): Any = product_id
-
-    override fun content(): Any {
-        TODO("Not yet implemented")
-    }
 
 }

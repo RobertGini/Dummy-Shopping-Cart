@@ -7,9 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.DefaultItemAnimator
 import com.example.dummyshoppingcart.R
 import com.example.dummyshoppingcart.databinding.FragmentMainBinding
+import com.example.dummyshoppingcart.presentation.adapter.CategoryAdapter
 import com.example.dummyshoppingcart.presentation.adapter.CompositeAdapter
 import com.example.dummyshoppingcart.presentation.adapter.MainAdapter
 import com.example.dummyshoppingcart.utils.Status
@@ -23,6 +24,7 @@ class MainFragment : DaggerFragment(R.layout.fragment_main) {
 
     private val compositeAdapter by lazy {
         CompositeAdapter.Builder()
+            .add(CategoryAdapter())
             .add(MainAdapter())
             .build()
     }
@@ -42,16 +44,16 @@ class MainFragment : DaggerFragment(R.layout.fragment_main) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupAdapter()
-        setupObservers()
+        setupProduct()
     }
 
-    private fun setupObservers() {
+    private fun setupProduct() {
         mainViewModel.getListOfProducts().observe(viewLifecycleOwner) {
             it?.let { resource ->
                 when (resource.status) {
                     Status.SUCCESS -> {
                         val data = resource.data!!
-                        Log.d(TAG, "Got data from API")
+                        Log.d(TAG, "Got Product data from API")
                         compositeAdapter.submitList(data)
                     }
                     Status.ERROR -> {
@@ -64,8 +66,10 @@ class MainFragment : DaggerFragment(R.layout.fragment_main) {
     }
 
     private fun setupAdapter() {
-        binding.rcMain.adapter = compositeAdapter
-        binding.rcMain.layoutManager = GridLayoutManager(requireContext(), 2)
+        binding.rcMain.apply {
+            adapter = compositeAdapter
+            itemAnimator = DefaultItemAnimator()
+        }
     }
 
     override fun onDestroyView() {

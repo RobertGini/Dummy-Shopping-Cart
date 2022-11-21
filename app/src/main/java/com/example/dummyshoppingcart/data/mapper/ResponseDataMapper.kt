@@ -40,7 +40,7 @@ class ResponseDataMapper @Inject constructor() {
     @Provides
     fun mapCategory(response: CategoryResponse): CategoryEntity {
         return CategoryEntity(
-            category_id = response.category_id!!,
+            category_id = response.category_id.toString(),
             category_image = response.category_image.toString(),
             category_name = response.category_name.toString()
         )

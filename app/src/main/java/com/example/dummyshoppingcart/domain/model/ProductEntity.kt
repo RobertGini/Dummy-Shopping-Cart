@@ -11,5 +11,4 @@ data class ProductEntity(
     val product_images: List<String>,
 ) : DelegateAdapterItem {
     override fun id(): Any = product_id
-
 }

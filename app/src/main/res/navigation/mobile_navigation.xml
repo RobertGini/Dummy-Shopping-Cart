@@ -16,4 +16,10 @@
         android:name="com.example.dummyshoppingcart.presentation.CatalogueFragment.CatalogueFragment"
         android:label="@string/catalogue"
         tools:layout="@layout/fragment_catalogue" />
+
+    <fragment
+        android:id="@+id/navigation_cart"
+        android:name="com.example.dummyshoppingcart.presentation.CartFragment.CartFragment"
+        android:label="@string/cart"
+        tools:layout="@layout/fragment_cart"/>
 </navigation>

@@ -2,12 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/navigation_main"
-        android:icon="@drawable/ic_launcher_background"
+        android:icon="@drawable/ic_home_black_24dp"
         android:title="@string/main" />
 
     <item
         android:id="@+id/navigation_catalogue"
-        android:icon="@drawable/ic_launcher_background"
+        android:icon="@drawable/ic_catalogue"
         android:title="@string/catalogue" />
+
+    <item
+        android:id="@+id/navigation_cart"
+        android:icon="@drawable/ic_cart"
+        android:title="@string/cart" />
 
 </menu>

@@ -2,6 +2,7 @@ package com.example.dummyshoppingcart.di.factory
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.dummyshoppingcart.presentation.CartFragment.CartViewModel
 import com.example.dummyshoppingcart.presentation.CatalogueFragment.CatalogueViewModel
 import com.example.dummyshoppingcart.presentation.MainFragment.MainViewModel
 import dagger.Binds
@@ -20,6 +21,11 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(CatalogueViewModel::class)
     abstract fun bindCatalogueViewModel(viewModel: CatalogueViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(CartViewModel::class)
+    abstract fun bindCartViewModel(viewModel: CartViewModel): ViewModel
 
     @Binds
     abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory

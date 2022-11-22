@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DefaultItemAnimator
 import com.example.dummyshoppingcart.R
 import com.example.dummyshoppingcart.databinding.FragmentMainBinding
+import com.example.dummyshoppingcart.domain.model.ProductEntity
 import com.example.dummyshoppingcart.presentation.adapter.CategoryAdapter
 import com.example.dummyshoppingcart.presentation.adapter.CompositeAdapter
 import com.example.dummyshoppingcart.presentation.adapter.MainAdapter
@@ -25,7 +26,7 @@ class MainFragment : DaggerFragment(R.layout.fragment_main) {
     private val compositeAdapter by lazy {
         CompositeAdapter.Builder()
             .add(CategoryAdapter())
-            .add(MainAdapter())
+            .add(MainAdapter { })
             .build()
     }
 
@@ -70,6 +71,10 @@ class MainFragment : DaggerFragment(R.layout.fragment_main) {
             adapter = compositeAdapter
             itemAnimator = DefaultItemAnimator()
         }
+    }
+
+    private fun onItemClick(data: ProductEntity) {
+        // bundle...
     }
 
     override fun onDestroyView() {

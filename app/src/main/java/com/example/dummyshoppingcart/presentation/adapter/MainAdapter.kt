@@ -10,10 +10,11 @@ import com.example.dummyshoppingcart.databinding.ItemListBinding
 import com.example.dummyshoppingcart.domain.model.DelegateAdapterItem
 import com.example.dummyshoppingcart.domain.model.ProductEntity
 
-class MainAdapter :
-    DelegateAdapter<ProductEntity, MainAdapter.MainViewHolder>(ProductEntity::class.java) {
+class MainAdapter(
+    private val onItemClick: (entity: ProductEntity) -> Unit
+) : DelegateAdapter<ProductEntity, MainAdapter.MainViewHolder>(ProductEntity::class.java) {
 
-    override fun createViewHolder(parent: ViewGroup): RecyclerView.ViewHolder  {
+    override fun createViewHolder(parent: ViewGroup): RecyclerView.ViewHolder {
         val binding =
             ItemListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MainViewHolder(binding)
@@ -35,7 +36,7 @@ class MainAdapter :
             rcPrice.text = entity.product_price
             rcImage.load(
                 entity.product_images[0]
-            ){
+            ) {
                 crossfade(true)
                 placeholder(R.mipmap.ic_launcher)
                 transformations(CircleCropTransformation())

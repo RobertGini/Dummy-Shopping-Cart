@@ -3,6 +3,7 @@ package com.example.dummyshoppingcart.di.modules
 import com.example.dummyshoppingcart.di.scopes.FragmentScoped
 import com.example.dummyshoppingcart.presentation.CartFragment.CartFragment
 import com.example.dummyshoppingcart.presentation.CatalogueFragment.CatalogueFragment
+import com.example.dummyshoppingcart.presentation.DescriptionFragment.DescriptionFragment
 import com.example.dummyshoppingcart.presentation.MainFragment.MainFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
@@ -20,4 +21,8 @@ abstract class FragmentModule {
     @FragmentScoped
     @ContributesAndroidInjector
     abstract fun cartFragment(): CartFragment
+
+    @FragmentScoped
+    @ContributesAndroidInjector
+    abstract fun descriptionFragment(): DescriptionFragment
 }

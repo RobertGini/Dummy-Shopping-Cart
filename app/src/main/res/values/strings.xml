@@ -5,4 +5,7 @@
     <string name="main">Main</string>
     <string name="catalogue">Catalogue</string>
     <string name="cart">Cart</string>
+    <string name="title">title</string>
+    <string name="description">Description</string>
+    <string name="specifications">Specifications</string>
 </resources>

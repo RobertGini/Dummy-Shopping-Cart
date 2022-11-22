@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
 import coil.transform.CircleCropTransformation
 import com.example.dummyshoppingcart.R
+import com.example.dummyshoppingcart.databinding.CategoryListBinding
 import com.example.dummyshoppingcart.databinding.ItemListBinding
 import com.example.dummyshoppingcart.domain.model.CategoryEntity
 import com.example.dummyshoppingcart.domain.model.DelegateAdapterItem
@@ -15,7 +16,7 @@ class CategoryAdapter :
 
     override fun createViewHolder(parent: ViewGroup): RecyclerView.ViewHolder  {
         val binding =
-            ItemListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            CategoryListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return CategoryViewHolder(binding)
     }
 
@@ -28,11 +29,11 @@ class CategoryAdapter :
     }
 
     inner class CategoryViewHolder(
-        private val binding: ItemListBinding
+        private val binding: CategoryListBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(entity: CategoryEntity) = with(binding) {
-            rcTitle.text = entity.category_name
-            rcImage.load(
+            rcCategoryTitle .text = entity.category_name
+            rcCategoryImage.load(
                 entity.category_image
             ){
                 crossfade(true)

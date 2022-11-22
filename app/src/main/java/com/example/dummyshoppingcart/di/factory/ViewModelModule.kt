@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.dummyshoppingcart.presentation.CartFragment.CartViewModel
 import com.example.dummyshoppingcart.presentation.CatalogueFragment.CatalogueViewModel
+import com.example.dummyshoppingcart.presentation.DescriptionFragment.DescriptionViewModel
 import com.example.dummyshoppingcart.presentation.MainFragment.MainViewModel
 import dagger.Binds
 import dagger.Module
@@ -26,6 +27,11 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(CartViewModel::class)
     abstract fun bindCartViewModel(viewModel: CartViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(DescriptionViewModel::class)
+    abstract fun bindDescriptionViewModel(viewModel: DescriptionViewModel): ViewModel
 
     @Binds
     abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory

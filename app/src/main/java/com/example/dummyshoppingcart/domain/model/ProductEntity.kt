@@ -9,6 +9,4 @@ data class ProductEntity(
     val product_price: String = "",
     val product_description: String = "",
     val product_images: List<String>,
-) : DelegateAdapterItem {
-    override fun id(): Any = product_id
-}
+)

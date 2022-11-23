@@ -6,12 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.navArgs
 import coil.api.load
 import coil.transform.CircleCropTransformation
 import com.example.dummyshoppingcart.R
 import com.example.dummyshoppingcart.databinding.FragmentDescriptionBinding
 import com.example.dummyshoppingcart.domain.model.ProductEntity
 import dagger.android.support.DaggerFragment
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.json.Json
 import javax.inject.Inject
 
 class DescriptionFragment : DaggerFragment(R.layout.fragment_description) {
@@ -33,11 +36,18 @@ class DescriptionFragment : DaggerFragment(R.layout.fragment_description) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        getDataFromClick()
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun getDataFromClick() {
+        val args: DescriptionFragmentArgs by navArgs()
+        val item = args.productEntity
+        setUI(item)
     }
 
     private fun setUI(entity: ProductEntity) {

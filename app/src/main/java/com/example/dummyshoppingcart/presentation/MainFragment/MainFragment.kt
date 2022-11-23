@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -14,7 +15,9 @@ import com.example.dummyshoppingcart.R
 import com.example.dummyshoppingcart.databinding.FragmentMainBinding
 import com.example.dummyshoppingcart.domain.model.ProductEntity
 import com.example.dummyshoppingcart.presentation.adapter.MainAdapter
+import com.example.dummyshoppingcart.utils.Status
 import dagger.android.support.DaggerFragment
+import kotlinx.serialization.json.Json
 import javax.inject.Inject
 
 class MainFragment : DaggerFragment(R.layout.fragment_main) {
@@ -23,7 +26,8 @@ class MainFragment : DaggerFragment(R.layout.fragment_main) {
     private val binding get() = _binding!!
 
     private val mainAdapter by lazy {
-        MainAdapter()
+        MainAdapter {
+        }
     }
 
     @Inject
@@ -45,9 +49,10 @@ class MainFragment : DaggerFragment(R.layout.fragment_main) {
     }
 
     private fun setupAdapter() {
-        binding.rcMain.adapter = mainAdapter
         binding.rcMain.apply {
-            layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+            adapter = mainAdapter
+            layoutManager =
+                LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
             itemAnimator = DefaultItemAnimator()
         }
     }
@@ -56,9 +61,16 @@ class MainFragment : DaggerFragment(R.layout.fragment_main) {
         mainViewModel.listItems.observe(viewLifecycleOwner) {
             it.let {
                 mainAdapter.items = it
-                Log.d(TAG,"${mainAdapter.items}")
+                mainAdapter.notifyDataSetChanged()
+                Log.d(TAG, "${mainAdapter.items}")
             }
         }
+    }
+
+    private fun onProductClick(data: ProductEntity) {
+        val action = MainFragmentDirections.actionNavigationMainToDescriptionFragment(data)
+        findNavController().navigate(action)
+        Log.d(TAG, "Clicked")
     }
 
     override fun onDestroyView() {

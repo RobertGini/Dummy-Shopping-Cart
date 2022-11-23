@@ -9,7 +9,11 @@
         android:id="@+id/navigation_main"
         android:name="com.example.dummyshoppingcart.presentation.MainFragment.MainFragment"
         android:label="@string/main"
-        tools:layout="@layout/fragment_main" />
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_navigation_main_to_descriptionFragment"
+            app:destination="@id/descriptionFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_catalogue"
@@ -22,4 +26,15 @@
         android:name="com.example.dummyshoppingcart.presentation.CartFragment.CartFragment"
         android:label="@string/cart"
         tools:layout="@layout/fragment_cart"/>
+    <fragment
+        android:id="@+id/descriptionFragment"
+        android:name="com.example.dummyshoppingcart.presentation.DescriptionFragment.DescriptionFragment"
+        android:label="fragment_description"
+        tools:layout="@layout/fragment_description">
+        <argument
+            android:name="productEntity"
+            app:argType="com.example.dummyshoppingcart.domain.model.ProductEntity" />
+    </fragment>
+
+
 </navigation>

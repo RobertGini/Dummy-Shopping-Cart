@@ -4,8 +4,9 @@ import com.example.dummyshoppingcart.domain.iterators.DisplayableItem
 import com.example.dummyshoppingcart.presentation.adapter.promoAdapterDelegate
 import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 
-class MainAdapter : ListDelegationAdapter<List<DisplayableItem>>(
-    promoAdapterDelegate()
+class MainAdapter(onProductClick: () -> Unit) : ListDelegationAdapter<List<DisplayableItem>>(
+    promoAdapterDelegate(onProductClick),
+    categoryAdapterDelegate(),
 )
 
 

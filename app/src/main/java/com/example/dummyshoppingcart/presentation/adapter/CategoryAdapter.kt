@@ -1,54 +1,54 @@
 package com.example.dummyshoppingcart.presentation.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
 import coil.transform.CircleCropTransformation
 import com.example.dummyshoppingcart.R
 import com.example.dummyshoppingcart.databinding.ItemListBinding
-import com.example.dummyshoppingcart.domain.model.ProductEntity
+import com.example.dummyshoppingcart.domain.model.CategoryEntity
 
-class ProductAdapter(
-    private val onProductClick: () -> Unit
-): RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
+class CategoryAdapter: RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
 
-    private val items = ArrayList<ProductEntity>()
+    private val items = ArrayList<CategoryEntity>()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
         val binding = ItemListBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false
         )
-        return ProductViewHolder(binding)
+        return CategoryViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
         holder.bind(items[position])
     }
 
     override fun getItemCount() = items.size
 
 
-    inner class ProductViewHolder(
+    inner class CategoryViewHolder(
         private val binding: ItemListBinding
         ): RecyclerView.ViewHolder(binding.root) {
-        fun bind(entity: ProductEntity)  {
+        fun bind(entity: CategoryEntity)  {
             binding.apply {
-                rcTitle.text = entity.product_title
-                rcPrice.text = entity.product_price
+                rcTitle.text = entity.category_name
                 rcImage.load(
-                    entity.product_images[0]
+                    entity.category_image
                 ) {
                     crossfade(true)
+                    placeholder(R.mipmap.ic_launcher)
                     transformations(CircleCropTransformation())
                 }
             }
+
         }
     }
 
-    fun setItems(data: List<ProductEntity>) {
+    fun setItems(data: List<CategoryEntity>) {
         items.clear()
         items.addAll(data)
         notifyDataSetChanged()

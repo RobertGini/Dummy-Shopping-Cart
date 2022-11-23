@@ -7,7 +7,7 @@
     android:layout_marginTop="20dp">
 
     <TextView
-        android:id="@+id/product_title"
+        android:id="@+id/category_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -19,7 +19,7 @@
         tools:text="title" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_product"
+        android:id="@+id/recycler_category"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:clipToPadding="false"
@@ -28,7 +28,7 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/product_title"
+        app:layout_constraintTop_toBottomOf="@id/category_title"
         tools:listitem="@layout/item_list" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

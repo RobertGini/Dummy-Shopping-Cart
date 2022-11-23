@@ -15,19 +15,19 @@ import com.example.dummyshoppingcart.R
 import com.example.dummyshoppingcart.databinding.FragmentMainBinding
 import com.example.dummyshoppingcart.domain.model.ProductEntity
 import com.example.dummyshoppingcart.presentation.adapter.MainAdapter
-import com.example.dummyshoppingcart.utils.Status
+import com.example.dummyshoppingcart.domain.interfaces.OnProductClick
 import dagger.android.support.DaggerFragment
-import kotlinx.serialization.json.Json
 import javax.inject.Inject
 
-class MainFragment : DaggerFragment(R.layout.fragment_main) {
+class MainFragment : DaggerFragment(R.layout.fragment_main), OnProductClick {
 
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
 
+    var listener: OnProductClick = this
+
     private val mainAdapter by lazy {
-        MainAdapter {
-        }
+        MainAdapter (listener)
     }
 
     @Inject
@@ -51,8 +51,11 @@ class MainFragment : DaggerFragment(R.layout.fragment_main) {
     private fun setupAdapter() {
         binding.rcMain.apply {
             adapter = mainAdapter
-            layoutManager =
-                LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+            layoutManager = LinearLayoutManager(
+                requireContext(),
+                RecyclerView.VERTICAL,
+                false
+            )
             itemAnimator = DefaultItemAnimator()
         }
     }
@@ -67,11 +70,11 @@ class MainFragment : DaggerFragment(R.layout.fragment_main) {
         }
     }
 
-    private fun onProductClick(data: ProductEntity) {
-        val action = MainFragmentDirections.actionNavigationMainToDescriptionFragment(data)
+    override fun onProductClicked(view: View, productEntity: ProductEntity) {
+        val action =
+            MainFragmentDirections.actionNavigationMainToDescriptionFragment(productEntity)
         findNavController().navigate(action)
-        Log.d(TAG, "Clicked")
-    }
+        Log.d(TAG, "Clicked")    }
 
     override fun onDestroyView() {
         super.onDestroyView()

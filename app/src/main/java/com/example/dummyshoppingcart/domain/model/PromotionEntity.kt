@@ -1,6 +1,6 @@
 package com.example.dummyshoppingcart.domain.model
 
-import com.example.dummyshoppingcart.domain.iterators.DisplayableItem
+import com.example.dummyshoppingcart.domain.interfaces.DisplayableItem
 
 data class PromotionEntity(
     val title: String,

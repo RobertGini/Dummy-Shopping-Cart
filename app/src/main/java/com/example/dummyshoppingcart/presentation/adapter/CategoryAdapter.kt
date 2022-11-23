@@ -1,12 +1,10 @@
 package com.example.dummyshoppingcart.presentation.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
 import coil.transform.CircleCropTransformation
-import com.example.dummyshoppingcart.R
 import com.example.dummyshoppingcart.databinding.ItemListBinding
 import com.example.dummyshoppingcart.domain.model.CategoryEntity
 
@@ -29,7 +27,6 @@ class CategoryAdapter: RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>(
 
     override fun getItemCount() = items.size
 
-
     inner class CategoryViewHolder(
         private val binding: ItemListBinding
         ): RecyclerView.ViewHolder(binding.root) {
@@ -40,7 +37,6 @@ class CategoryAdapter: RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>(
                     entity.category_image
                 ) {
                     crossfade(true)
-                    placeholder(R.mipmap.ic_launcher)
                     transformations(CircleCropTransformation())
                 }
             }

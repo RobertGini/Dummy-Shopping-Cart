@@ -5,12 +5,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
 import coil.transform.CircleCropTransformation
-import com.example.dummyshoppingcart.R
 import com.example.dummyshoppingcart.databinding.ItemListBinding
+import com.example.dummyshoppingcart.domain.interfaces.OnProductClick
 import com.example.dummyshoppingcart.domain.model.ProductEntity
 
 class ProductAdapter(
-    private val onProductClick: () -> Unit
+    private val onProductClick: OnProductClick
 ): RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
 
     private val items = ArrayList<ProductEntity>()
@@ -43,6 +43,9 @@ class ProductAdapter(
                 ) {
                     crossfade(true)
                     transformations(CircleCropTransformation())
+                }
+                itemContainer.setOnClickListener{
+                    onProductClick.onProductClicked(it, entity)
                 }
             }
         }

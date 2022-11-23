@@ -2,8 +2,7 @@ package com.example.dummyshoppingcart.data.repositories
 
 import com.example.dummyshoppingcart.data.api.ApiService
 import com.example.dummyshoppingcart.data.mapper.ResponseDataMapper
-import com.example.dummyshoppingcart.domain.iterators.Repository
-import com.example.dummyshoppingcart.domain.model.CategoryEntity
+import com.example.dummyshoppingcart.domain.interfaces.Repository
 import javax.inject.Inject
 
 class RepositoryImpl @Inject constructor(

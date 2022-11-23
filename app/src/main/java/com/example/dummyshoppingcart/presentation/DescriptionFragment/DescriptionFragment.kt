@@ -13,8 +13,6 @@ import com.example.dummyshoppingcart.R
 import com.example.dummyshoppingcart.databinding.FragmentDescriptionBinding
 import com.example.dummyshoppingcart.domain.model.ProductEntity
 import dagger.android.support.DaggerFragment
-import kotlinx.serialization.decodeFromString
-import kotlinx.serialization.json.Json
 import javax.inject.Inject
 
 class DescriptionFragment : DaggerFragment(R.layout.fragment_description) {
@@ -29,7 +27,7 @@ class DescriptionFragment : DaggerFragment(R.layout.fragment_description) {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentDescriptionBinding.inflate(layoutInflater)
         return binding.root
     }

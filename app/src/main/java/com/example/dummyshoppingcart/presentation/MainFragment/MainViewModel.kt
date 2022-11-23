@@ -1,11 +1,9 @@
 package com.example.dummyshoppingcart.presentation.MainFragment
 
 import androidx.lifecycle.*
-import com.example.dummyshoppingcart.domain.iterators.DisplayableItem
+import com.example.dummyshoppingcart.domain.interfaces.DisplayableItem
 import com.example.dummyshoppingcart.domain.iterators.IteratorUseCase
-import com.example.dummyshoppingcart.domain.model.CategoryEntity
 import com.example.dummyshoppingcart.domain.model.CategoryListEntity
-import com.example.dummyshoppingcart.domain.model.DelegateAdapterItem
 import com.example.dummyshoppingcart.domain.model.PromotionEntity
 import com.example.dummyshoppingcart.utils.Resource
 import kotlinx.coroutines.Dispatchers

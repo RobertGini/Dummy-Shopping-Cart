@@ -1,7 +1,6 @@
 package com.example.dummyshoppingcart.presentation.CartFragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +8,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.example.dummyshoppingcart.R
 import com.example.dummyshoppingcart.databinding.FragmentCartBinding
-import com.example.dummyshoppingcart.databinding.FragmentCatalogueBinding
 import com.example.dummyshoppingcart.presentation.CatalogueFragment.CatalogueViewModel
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
@@ -26,7 +24,7 @@ class CartFragment : DaggerFragment(R.layout.fragment_cart) {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentCartBinding.inflate(layoutInflater)
         return binding.root
     }

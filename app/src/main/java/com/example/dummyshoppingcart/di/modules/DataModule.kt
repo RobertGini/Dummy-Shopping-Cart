@@ -2,7 +2,7 @@ package com.example.dummyshoppingcart.di.modules
 
 import com.example.dummyshoppingcart.data.mapper.ResponseDataMapper
 import com.example.dummyshoppingcart.data.repositories.RepositoryImpl
-import com.example.dummyshoppingcart.domain.iterators.Repository
+import com.example.dummyshoppingcart.domain.interfaces.Repository
 import dagger.Binds
 import dagger.Module
 import javax.inject.Singleton

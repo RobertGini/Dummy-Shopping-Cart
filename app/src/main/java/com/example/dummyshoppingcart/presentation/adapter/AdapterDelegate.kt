@@ -7,6 +7,7 @@ import com.example.dummyshoppingcart.databinding.ItemCategoryBinding
 import com.example.dummyshoppingcart.databinding.ItemPromoBinding
 import com.example.dummyshoppingcart.domain.interfaces.OnProductClick
 import com.example.dummyshoppingcart.domain.interfaces.DisplayableItem
+import com.example.dummyshoppingcart.domain.interfaces.OnCategoryClick
 import com.example.dummyshoppingcart.domain.model.CategoryListEntity
 import com.example.dummyshoppingcart.domain.model.PromotionEntity
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
@@ -31,12 +32,12 @@ fun promoAdapterDelegate(onProductClick: OnProductClick) =
     }
 }
 
-fun categoryAdapterDelegate() =
+fun categoryAdapterDelegate(onCategoryClick: OnCategoryClick) =
     adapterDelegateViewBinding<CategoryListEntity, DisplayableItem, ItemCategoryBinding>(
     { layoutInflater, root -> ItemCategoryBinding.inflate(layoutInflater, root, false) }
 ) {
     bind {
-        val categoryAdapter = CategoryAdapter()
+        val categoryAdapter = CategoryAdapter(onCategoryClick)
         binding.recyclerCategory.apply {
             adapter = categoryAdapter
             layoutManager = LinearLayoutManager(

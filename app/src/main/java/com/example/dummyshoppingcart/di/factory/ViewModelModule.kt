@@ -2,10 +2,11 @@ package com.example.dummyshoppingcart.di.factory
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.dummyshoppingcart.presentation.CartFragment.CartViewModel
-import com.example.dummyshoppingcart.presentation.CatalogueFragment.CatalogueViewModel
-import com.example.dummyshoppingcart.presentation.DescriptionFragment.DescriptionViewModel
-import com.example.dummyshoppingcart.presentation.MainFragment.MainViewModel
+import com.example.dummyshoppingcart.presentation.cartFragment.CartViewModel
+import com.example.dummyshoppingcart.presentation.catalogueFragment.CatalogueViewModel
+import com.example.dummyshoppingcart.presentation.descriptionFragment.DescriptionViewModel
+import com.example.dummyshoppingcart.presentation.mainFragment.MainViewModel
+import com.example.dummyshoppingcart.presentation.productByFragment.ProductByViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -32,6 +33,11 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(DescriptionViewModel::class)
     abstract fun bindDescriptionViewModel(viewModel: DescriptionViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ProductByViewModel::class)
+    abstract fun bindProductByViewModelViewModel(viewModel: ProductByViewModel): ViewModel
 
     @Binds
     abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory

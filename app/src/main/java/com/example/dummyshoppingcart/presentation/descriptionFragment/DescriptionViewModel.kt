@@ -1,4 +1,4 @@
-package com.example.dummyshoppingcart.presentation.DescriptionFragment
+package com.example.dummyshoppingcart.presentation.descriptionFragment
 
 import androidx.lifecycle.ViewModel
 import com.example.dummyshoppingcart.domain.iterators.IteratorUseCase

@@ -1,4 +1,4 @@
-package com.example.dummyshoppingcart.presentation.CatalogueFragment
+package com.example.dummyshoppingcart.presentation.cartFragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,24 +7,25 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.example.dummyshoppingcart.R
-import com.example.dummyshoppingcart.databinding.FragmentCatalogueBinding
+import com.example.dummyshoppingcart.databinding.FragmentCartBinding
+import com.example.dummyshoppingcart.presentation.catalogueFragment.CatalogueViewModel
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
-class CatalogueFragment : DaggerFragment(R.layout.fragment_catalogue) {
+class CartFragment : DaggerFragment(R.layout.fragment_cart) {
 
-    private var _binding: FragmentCatalogueBinding? = null
+    private var _binding: FragmentCartBinding? = null
     private val binding get() = _binding!!
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-    val catalogueViewModel: CatalogueViewModel by viewModels { viewModelFactory }
+    val cartViewModel: CatalogueViewModel by viewModels { viewModelFactory }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentCatalogueBinding.inflate(layoutInflater)
+    ): View {
+        _binding = FragmentCartBinding.inflate(layoutInflater)
         return binding.root
     }
 
@@ -38,6 +39,6 @@ class CatalogueFragment : DaggerFragment(R.layout.fragment_catalogue) {
     }
 
     companion object {
-        fun newInstance() = CatalogueFragment()
+        fun newInstance() = CartFragment()
     }
 }

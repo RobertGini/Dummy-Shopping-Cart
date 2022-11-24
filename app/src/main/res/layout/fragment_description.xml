@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.DescriptionFragment.DescriptionFragment">
+    tools:context=".presentation.descriptionFragment.DescriptionFragment">
 
     <ImageView
         android:id="@+id/desc_image"
@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
         android:gravity="fill"
-        android:text="Price"
+        android:text="@string/price"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -64,7 +64,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
         android:textSize="20sp"
-        android:text="Some text"
+        android:text="@string/description"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"

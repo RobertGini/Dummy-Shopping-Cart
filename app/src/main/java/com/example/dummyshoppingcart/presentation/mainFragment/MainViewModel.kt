@@ -1,4 +1,4 @@
-package com.example.dummyshoppingcart.presentation.MainFragment
+package com.example.dummyshoppingcart.presentation.mainFragment
 
 import androidx.lifecycle.*
 import com.example.dummyshoppingcart.domain.interfaces.DisplayableItem

@@ -15,4 +15,8 @@ class IteratorUseCase @Inject constructor(
     override suspend fun getAllCategories(): List<CategoryEntity> {
         return repository.getAllCategories()
     }
+
+    override suspend fun getProductByCategory(productId: Int): List<ProductEntity> {
+        return repository.getProductByCategory(productId)
+    }
 }

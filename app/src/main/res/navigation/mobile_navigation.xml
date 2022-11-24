@@ -7,34 +7,54 @@
 
     <fragment
         android:id="@+id/navigation_main"
-        android:name="com.example.dummyshoppingcart.presentation.MainFragment.MainFragment"
+        android:name="com.example.dummyshoppingcart.presentation.mainFragment.MainFragment"
         android:label="@string/main"
         tools:layout="@layout/fragment_main" >
         <action
             android:id="@+id/action_navigation_main_to_descriptionFragment"
-            app:destination="@id/descriptionFragment" />
+            app:destination="@id/description_fragment" />
+        <action
+            android:id="@+id/action_navigation_main_to_product_by_fragment"
+            app:destination="@id/product_by_fragment" />
     </fragment>
 
     <fragment
         android:id="@+id/navigation_catalogue"
-        android:name="com.example.dummyshoppingcart.presentation.CatalogueFragment.CatalogueFragment"
+        android:name="com.example.dummyshoppingcart.presentation.catalogueFragment.CatalogueFragment"
         android:label="@string/catalogue"
-        tools:layout="@layout/fragment_catalogue" />
+        tools:layout="@layout/fragment_catalogue" >
+        <action
+            android:id="@+id/action_navigation_catalogue_to_productByFragment"
+            app:destination="@id/product_by_fragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_cart"
-        android:name="com.example.dummyshoppingcart.presentation.CartFragment.CartFragment"
+        android:name="com.example.dummyshoppingcart.presentation.cartFragment.CartFragment"
         android:label="@string/cart"
         tools:layout="@layout/fragment_cart"/>
+
     <fragment
-        android:id="@+id/descriptionFragment"
-        android:name="com.example.dummyshoppingcart.presentation.DescriptionFragment.DescriptionFragment"
-        android:label="fragment_description"
+        android:id="@+id/description_fragment"
+        android:name="com.example.dummyshoppingcart.presentation.descriptionFragment.DescriptionFragment"
+        android:label="@string/description"
         tools:layout="@layout/fragment_description">
         <argument
             android:name="productEntity"
             app:argType="com.example.dummyshoppingcart.domain.model.ProductEntity" />
     </fragment>
 
+    <fragment
+        android:id="@+id/product_by_fragment"
+        android:name="com.example.dummyshoppingcart.presentation.productByFragment.ProductByFragment"
+        android:label="@string/products"
+        tools:layout="@layout/fragment_product_by" >
+        <action
+            android:id="@+id/action_productByFragment_to_description_fragment"
+            app:destination="@id/description_fragment" />
+        <argument
+            android:name="productId"
+            app:argType="integer" />
+    </fragment>
 
 </navigation>

@@ -3,6 +3,7 @@ package com.example.dummyshoppingcart.data.repositories
 import com.example.dummyshoppingcart.data.api.ApiService
 import com.example.dummyshoppingcart.data.mapper.ResponseDataMapper
 import com.example.dummyshoppingcart.domain.interfaces.Repository
+import com.example.dummyshoppingcart.domain.model.ProductEntity
 import javax.inject.Inject
 
 class RepositoryImpl @Inject constructor(
@@ -14,5 +15,8 @@ class RepositoryImpl @Inject constructor(
 
     override suspend fun getAllCategories() =
         mapper.mappingCategoryResponse(apiService.getAllCategories())
+
+    override suspend fun getProductByCategory(productId: Int): List<ProductEntity> =
+        mapper.mappingProductResponse(apiService.getProductByCategory(productId))
 
 }

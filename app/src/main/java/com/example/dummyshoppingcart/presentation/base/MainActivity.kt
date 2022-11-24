@@ -1,7 +1,10 @@
 package com.example.dummyshoppingcart.presentation.base
 
 import android.os.Bundle
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.dummyshoppingcart.R
 import com.example.dummyshoppingcart.databinding.ActivityMainBinding
@@ -26,6 +29,14 @@ class MainActivity : DaggerAppCompatActivity() {
             supportFragmentManager
                 .findFragmentById(R.id.nav_host_fragment_activity_main) as NavHostFragment
         val navController = navHostFragment.navController
+        val appBarConfiguration = AppBarConfiguration(navController.graph)
+        setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = findNavController(R.id.nav_host_fragment_activity_main)
+        return navController.navigateUp()
+                ||super.onSupportNavigateUp()
     }
 }

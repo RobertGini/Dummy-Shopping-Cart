@@ -6,9 +6,13 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
 import coil.transform.CircleCropTransformation
 import com.example.dummyshoppingcart.databinding.ItemListBinding
+import com.example.dummyshoppingcart.domain.interfaces.OnCategoryClick
+import com.example.dummyshoppingcart.domain.interfaces.OnProductClick
 import com.example.dummyshoppingcart.domain.model.CategoryEntity
 
-class CategoryAdapter: RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
+class CategoryAdapter(
+    private val onCategoryClick: OnCategoryClick
+): RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
 
     private val items = ArrayList<CategoryEntity>()
 
@@ -38,6 +42,9 @@ class CategoryAdapter: RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>(
                 ) {
                     crossfade(true)
                     transformations(CircleCropTransformation())
+                }
+                itemContainer.setOnClickListener {
+                    onCategoryClick.onCategoryClick(it, entity)
                 }
             }
 

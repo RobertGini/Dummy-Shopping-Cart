@@ -1,4 +1,4 @@
-package com.example.dummyshoppingcart.presentation.MainFragment
+package com.example.dummyshoppingcart.presentation.mainFragment
 
 import android.os.Bundle
 import android.util.Log
@@ -13,21 +13,30 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dummyshoppingcart.R
 import com.example.dummyshoppingcart.databinding.FragmentMainBinding
+import com.example.dummyshoppingcart.domain.interfaces.OnCategoryClick
+import com.example.dummyshoppingcart.domain.interfaces.OnProductClick
+import com.example.dummyshoppingcart.domain.model.CategoryEntity
 import com.example.dummyshoppingcart.domain.model.ProductEntity
 import com.example.dummyshoppingcart.presentation.adapter.MainAdapter
-import com.example.dummyshoppingcart.domain.interfaces.OnProductClick
+import com.example.dummyshoppingcart.presentation.catalogueFragment.CatalogueFragment
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
-class MainFragment : DaggerFragment(R.layout.fragment_main), OnProductClick {
-
+class MainFragment:
+    DaggerFragment(R.layout.fragment_main),
+    OnProductClick,
+    OnCategoryClick
+{
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
 
-    var listener: OnProductClick = this
-
+    private var productListener: OnProductClick = this
+    private var categoryListener: OnCategoryClick = this
     private val mainAdapter by lazy {
-        MainAdapter (listener)
+        MainAdapter (
+            productListener,
+            categoryListener
+        )
     }
 
     @Inject
@@ -74,7 +83,16 @@ class MainFragment : DaggerFragment(R.layout.fragment_main), OnProductClick {
         val action =
             MainFragmentDirections.actionNavigationMainToDescriptionFragment(productEntity)
         findNavController().navigate(action)
-        Log.d(TAG, "Clicked")    }
+        Log.d(TAG, "Clicked on Product")
+    }
+
+    override fun onCategoryClick(view: View, categoryEntity: CategoryEntity) {
+        val productId = categoryEntity.category_id.toInt()
+        val action =
+            MainFragmentDirections.actionNavigationMainToProductByFragment(productId)
+        findNavController().navigate(action)
+        Log.d(CatalogueFragment.TAG, "Clicked on category")
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()

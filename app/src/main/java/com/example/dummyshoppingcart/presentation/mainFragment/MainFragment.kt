@@ -3,6 +3,7 @@ package com.example.dummyshoppingcart.presentation.mainFragment
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import androidx.appcompat.widget.SearchView
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.viewModels
@@ -87,11 +88,28 @@ class MainFragment:
         menuHost.addMenuProvider(object : MenuProvider {
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
                 menuInflater.inflate(R.menu.overflow_menu, menu)
+
+                val searchItem = menu.findItem(R.id.toolbar_search)
+                val searchView = searchItem?.actionView as SearchView
+                searchView.queryHint = "Search for a product..."
+
+                searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                    override fun onQueryTextSubmit(query: String?): Boolean {
+                        if (query != null){
+                            Log.d(TAG, "Submit Search")
+                        }
+                        return false
+                    }
+                    override fun onQueryTextChange(newText: String?): Boolean {
+                        return false
+                    }
+                })
             }
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
                 return when (menuItem.itemId) {
                     R.id.toolbar_search -> {
+                        //Navigate to Search Fragment
                         Log.d(TAG, "Clicked on ItemMenu")
                         true
                     }

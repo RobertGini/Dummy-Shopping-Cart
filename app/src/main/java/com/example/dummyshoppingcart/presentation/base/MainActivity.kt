@@ -8,7 +8,6 @@ import androidx.core.view.MenuProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.onNavDestinationSelected
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.dummyshoppingcart.R
@@ -26,11 +25,7 @@ class MainActivity : DaggerAppCompatActivity() {
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setupNavigation()
-        setupToolbar()
     }
-
-
-
     //Bottom navigation
     private fun setupNavigation() {
         val navView: BottomNavigationView = binding.navView
@@ -53,18 +48,5 @@ class MainActivity : DaggerAppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
         return navController.navigateUp()
                 || super.onSupportNavigateUp()
-    }
-
-    //Toolbar
-    private fun setupToolbar() {
-        addMenuProvider(object : MenuProvider {
-            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-                //menuInflater.inflate(R.menu.overflow_menu, menu)
-            }
-
-            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-                return true
-            }
-        })
     }
 }

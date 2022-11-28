@@ -2,10 +2,11 @@ package com.example.dummyshoppingcart.presentation.mainFragment
 
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import androidx.core.view.MenuHost
+import androidx.core.view.MenuProvider
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
@@ -55,6 +56,7 @@ class MainFragment:
         super.onViewCreated(view, savedInstanceState)
         setupAdapter()
         setupProduct()
+        setupToolbarInFragment()
     }
 
     private fun setupAdapter() {
@@ -77,6 +79,26 @@ class MainFragment:
                 Log.d(TAG, "${mainAdapter.items}")
             }
         }
+    }
+
+    private fun setupToolbarInFragment() {
+        val menuHost: MenuHost = requireActivity()
+
+        menuHost.addMenuProvider(object : MenuProvider {
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                menuInflater.inflate(R.menu.overflow_menu, menu)
+            }
+
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                return when (menuItem.itemId) {
+                    R.id.toolbar_search -> {
+                        Log.d(TAG, "Clicked on ItemMenu")
+                        true
+                    }
+                    else -> false
+                }
+            }
+        }, viewLifecycleOwner, Lifecycle.State.RESUMED)
     }
 
     override fun onProductClicked(view: View, productEntity: ProductEntity) {
@@ -103,4 +125,7 @@ class MainFragment:
         const val TAG = "MainFragment"
         fun newInstance() = MainFragment()
     }
+
+
+
 }

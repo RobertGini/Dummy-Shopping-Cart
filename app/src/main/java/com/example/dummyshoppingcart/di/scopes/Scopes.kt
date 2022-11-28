@@ -11,3 +11,8 @@ annotation class ActivityScoped
 @Scope
 @Retention(AnnotationRetention.RUNTIME)
 annotation class FragmentScoped
+
+@MustBeDocumented
+@Scope
+@Retention(AnnotationRetention.RUNTIME)
+annotation class AppScoped

@@ -15,7 +15,7 @@ import com.example.dummyshoppingcart.databinding.FragmentCatalogueBinding
 import com.example.dummyshoppingcart.domain.interfaces.OnCategoryClick
 import com.example.dummyshoppingcart.domain.model.CategoryEntity
 import com.example.dummyshoppingcart.presentation.adapter.CategoryAdapter
-import com.example.dummyshoppingcart.utils.Status
+import com.example.core.utils.Status
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 

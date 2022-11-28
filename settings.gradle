@@ -14,3 +14,7 @@ dependencyResolutionManagement {
 }
 rootProject.name = "DummyShoppingCart"
 include ':app'
+include ':core'
+include ':feature-catalogue'
+include ':feature-cart'
+include ':feature-main'

@@ -1,6 +1,9 @@
 package com.example.dummyshoppingcart.di.modules
 
+import android.app.Application
+import android.content.Context
 import com.example.dummyshoppingcart.di.factory.ViewModelModule
+import dagger.Binds
 import dagger.Module
 
 @Module(
@@ -9,4 +12,7 @@ import dagger.Module
         DataModule::class
     ]
 )
-abstract class AppModule
+abstract class AppModule {
+    @Binds
+    abstract fun bindContext(application: Application): Context
+}

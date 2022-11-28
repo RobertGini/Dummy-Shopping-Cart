@@ -1,8 +1,7 @@
 package com.example.dummyshoppingcart.di.modules
 
-import com.example.dummyshoppingcart.data.mapper.ResponseDataMapper
-import com.example.dummyshoppingcart.data.repositories.RepositoryImpl
 import com.example.dummyshoppingcart.domain.interfaces.Repository
+import com.example.feature_main.data.repository.RepositoryImpl
 import dagger.Binds
 import dagger.Module
 import javax.inject.Singleton
@@ -11,7 +10,6 @@ import javax.inject.Singleton
 @Module(
     includes = [
         NetworkModule::class,
-        ResponseDataMapper::class,
     ]
 )
 abstract class DataModule {

@@ -2,6 +2,8 @@ package com.example.dummyshoppingcart.di.factory
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.core.di.ViewModelFactory
+import com.example.dummyshoppingcart.di.scopes.AppScoped
 import com.example.dummyshoppingcart.presentation.cartFragment.CartViewModel
 import com.example.dummyshoppingcart.presentation.catalogueFragment.CatalogueViewModel
 import com.example.dummyshoppingcart.presentation.descriptionFragment.DescriptionViewModel
@@ -40,5 +42,6 @@ abstract class ViewModelModule {
     abstract fun bindProductByViewModelViewModel(viewModel: ProductByViewModel): ViewModel
 
     @Binds
+    @AppScoped
     abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
 }

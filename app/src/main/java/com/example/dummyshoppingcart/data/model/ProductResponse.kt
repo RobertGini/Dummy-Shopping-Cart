@@ -13,7 +13,7 @@ data class ProductResponse(
     val product_title: String?,
 
     @Json(name = "price")
-    val product_price: Int?,
+    val product_price: Long?,
 
     @Json(name = "description")
     val product_description: String?,

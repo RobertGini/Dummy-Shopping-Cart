@@ -12,5 +12,6 @@
     <string name="back">Back</string>
     <string name="products">Products</string>
     <string name="price">Price</string>
+    <string name="search">Search</string>
 
 </resources>

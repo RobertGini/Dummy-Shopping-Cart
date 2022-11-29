@@ -1,7 +1,7 @@
 package com.example.dummyshoppingcart.presentation.mainFragment
 
 import androidx.lifecycle.*
-import com.example.dummyshoppingcart.domain.interfaces.DisplayableItem
+import com.example.core.domain.interfaces.DisplayableItem
 import com.example.dummyshoppingcart.domain.iterators.IteratorUseCase
 import com.example.dummyshoppingcart.domain.model.CategoryListEntity
 import com.example.dummyshoppingcart.domain.model.PromotionEntity

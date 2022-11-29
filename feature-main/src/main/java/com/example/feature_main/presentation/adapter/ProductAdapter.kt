@@ -1,16 +1,17 @@
 package com.example.dummyshoppingcart.presentation.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
 import coil.transform.CircleCropTransformation
-import com.example.dummyshoppingcart.domain.interfaces.OnProductClick
+import com.example.core.databinding.ItemListBinding
+import com.example.core.domain.interfaces.OnProductClick
 import com.example.dummyshoppingcart.domain.model.ProductEntity
-import com.example.feature_main.databinding.ItemListBinding
 
 class ProductAdapter(
-    private val onProductClick: OnProductClick
+    private val onProductClick: OnProductClick<View, ProductEntity>
 ): RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
 
     private val items = ArrayList<ProductEntity>()

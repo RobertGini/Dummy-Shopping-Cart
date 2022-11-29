@@ -4,8 +4,8 @@ import com.example.dummyshoppingcart.di.scopes.FragmentScoped
 import com.example.dummyshoppingcart.presentation.cartFragment.CartFragment
 import com.example.dummyshoppingcart.presentation.catalogueFragment.CatalogueFragment
 import com.example.dummyshoppingcart.presentation.descriptionFragment.DescriptionFragment
-import com.example.dummyshoppingcart.presentation.mainFragment.MainFragment
 import com.example.dummyshoppingcart.presentation.productByFragment.ProductByFragment
+import com.example.feature_main.presentation.mainFragment.MainFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

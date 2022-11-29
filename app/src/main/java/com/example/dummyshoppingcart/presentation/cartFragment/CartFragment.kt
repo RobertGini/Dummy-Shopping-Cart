@@ -8,18 +8,12 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.example.dummyshoppingcart.R
 import com.example.dummyshoppingcart.databinding.FragmentCartBinding
-import com.example.dummyshoppingcart.presentation.catalogueFragment.CatalogueViewModel
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
-
 class CartFragment : DaggerFragment(R.layout.fragment_cart) {
 
     private var _binding: FragmentCartBinding? = null
     private val binding get() = _binding!!
-
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
-    val cartViewModel: CatalogueViewModel by viewModels { viewModelFactory }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

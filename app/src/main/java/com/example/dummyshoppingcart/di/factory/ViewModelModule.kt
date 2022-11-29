@@ -6,7 +6,6 @@ import com.example.core.di.ViewModelFactory
 import com.example.dummyshoppingcart.di.scopes.AppScoped
 import com.example.dummyshoppingcart.presentation.cartFragment.CartViewModel
 import com.example.dummyshoppingcart.presentation.catalogueFragment.CatalogueViewModel
-import com.example.dummyshoppingcart.presentation.descriptionFragment.DescriptionViewModel
 import com.example.dummyshoppingcart.presentation.mainFragment.MainViewModel
 import com.example.dummyshoppingcart.presentation.productByFragment.ProductByViewModel
 import dagger.Binds
@@ -25,16 +24,6 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(CatalogueViewModel::class)
     abstract fun bindCatalogueViewModel(viewModel: CatalogueViewModel): ViewModel
-
-    @Binds
-    @IntoMap
-    @ViewModelKey(CartViewModel::class)
-    abstract fun bindCartViewModel(viewModel: CartViewModel): ViewModel
-
-    @Binds
-    @IntoMap
-    @ViewModelKey(DescriptionViewModel::class)
-    abstract fun bindDescriptionViewModel(viewModel: DescriptionViewModel): ViewModel
 
     @Binds
     @IntoMap

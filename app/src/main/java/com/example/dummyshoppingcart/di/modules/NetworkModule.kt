@@ -1,5 +1,6 @@
 package com.example.dummyshoppingcart.di.modules
 
+import com.example.feature_catalogue.data.api.CatalogueApi
 import com.example.feature_main.data.api.MainApi
 import dagger.Module
 import dagger.Provides
@@ -13,7 +14,7 @@ class NetworkModule {
 
     @Singleton
     @Provides
-    fun provideRetrofit() : Retrofit {
+    fun provideRetrofit(): Retrofit {
         return Retrofit.Builder()
             .baseUrl(baseUrl)
             .addConverterFactory(MoshiConverterFactory.create())
@@ -22,6 +23,11 @@ class NetworkModule {
 
     @Singleton
     @Provides
-    fun provideMainApi(retrofit: Retrofit) : MainApi = retrofit.create(MainApi::class.java)
+    fun provideMainApi(retrofit: Retrofit): MainApi = retrofit.create(MainApi::class.java)
+
+    @Singleton
+    @Provides
+    fun provideCatalogueApi(retrofit: Retrofit): CatalogueApi =
+        retrofit.create(CatalogueApi::class.java)
 
 }

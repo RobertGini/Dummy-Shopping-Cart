@@ -1,22 +1,22 @@
 package com.example.dummyshoppingcart.domain.iterators
 
-import com.example.dummyshoppingcart.domain.interfaces.Repository
+import com.example.dummyshoppingcart.domain.interfaces.RepositoryMain
 import com.example.dummyshoppingcart.domain.model.CategoryEntity
 import com.example.dummyshoppingcart.domain.model.ProductEntity
 import com.example.dummyshoppingcart.domain.useCase.UseCase
 import javax.inject.Inject
 
 class IteratorUseCase @Inject constructor(
-    private val repository: Repository
-) : UseCase<Any> {
+    private val repositoryMain: RepositoryMain
+) : UseCase<ProductEntity, CategoryEntity> {
     override suspend fun getAllProducts(): List<ProductEntity> {
-        return repository.getAllProducts()
+        return repositoryMain.getAllProducts()
     }
     override suspend fun getAllCategories(): List<CategoryEntity> {
-        return repository.getAllCategories()
+        return repositoryMain.getAllCategories()
     }
 
     override suspend fun getProductByCategory(productId: Int): List<ProductEntity> {
-        return repository.getProductByCategory(productId)
+        return repositoryMain.getProductByCategory(productId)
     }
 }

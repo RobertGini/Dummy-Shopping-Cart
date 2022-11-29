@@ -10,23 +10,23 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.core.domain.interfaces.OnCategoryClick
+import com.example.core.utils.Status
 import com.example.dummyshoppingcart.R
 import com.example.dummyshoppingcart.databinding.FragmentCatalogueBinding
-import com.example.dummyshoppingcart.domain.interfaces.OnCategoryClick
 import com.example.dummyshoppingcart.domain.model.CategoryEntity
 import com.example.dummyshoppingcart.presentation.adapter.CategoryAdapter
-import com.example.core.utils.Status
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
 class CatalogueFragment :
     DaggerFragment(R.layout.fragment_catalogue),
-    OnCategoryClick
+    OnCategoryClick<View, CategoryEntity>
 {
     private var _binding: FragmentCatalogueBinding? = null
     private val binding get() = _binding!!
 
-    private var categoryListener: OnCategoryClick = this
+    private var categoryListener: OnCategoryClick<View, CategoryEntity> = this
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory

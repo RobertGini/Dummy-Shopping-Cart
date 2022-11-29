@@ -4,8 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import coil.api.load
 import coil.transform.CircleCropTransformation
@@ -13,16 +11,11 @@ import com.example.dummyshoppingcart.domain.model.ProductEntity
 import com.example.feature_main.R
 import com.example.feature_main.databinding.FragmentDescriptionBinding
 import dagger.android.support.DaggerFragment
-import javax.inject.Inject
 
 class DescriptionFragment : DaggerFragment(R.layout.fragment_description) {
 
     private var _binding: FragmentDescriptionBinding? = null
     private val binding get() = _binding!!
-
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
-    val descriptionViewModel: DescriptionViewModel by viewModels { viewModelFactory }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

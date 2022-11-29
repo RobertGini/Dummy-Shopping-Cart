@@ -1,7 +1,9 @@
 package com.example.dummyshoppingcart.di.modules
 
-import com.example.dummyshoppingcart.domain.interfaces.Repository
-import com.example.feature_main.data.repository.RepositoryImpl
+import com.example.dummyshoppingcart.domain.interfaces.RepositoryMain
+import com.example.feature_catalogue.data.repository.RepositoryCatalogueImpl
+import com.example.feature_catalogue.domain.interfaces.RepositoryCatalogue
+import com.example.feature_main.data.repository.RepositoryMainImpl
 import dagger.Binds
 import dagger.Module
 import javax.inject.Singleton
@@ -15,5 +17,11 @@ import javax.inject.Singleton
 abstract class DataModule {
     @Singleton
     @Binds
-    abstract fun provideRepository(repositoryImpl: RepositoryImpl): Repository
+    abstract fun provideRepository(repositoryMain: RepositoryMainImpl): RepositoryMain
+
+    @Singleton
+    @Binds
+    abstract fun provideCatalogueRepository(
+        repositoryCatalogue: RepositoryCatalogueImpl
+    ): RepositoryCatalogue
 }

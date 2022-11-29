@@ -1,15 +1,15 @@
 package com.example.feature_main.data.repository
 
-import com.example.dummyshoppingcart.domain.interfaces.Repository
+import com.example.dummyshoppingcart.domain.interfaces.RepositoryMain
 import com.example.dummyshoppingcart.domain.model.ProductEntity
 import com.example.feature_main.data.api.MainApi
 import com.example.feature_main.data.mapper.ResponseDataMapper
 import javax.inject.Inject
 
-class RepositoryImpl @Inject constructor(
+class RepositoryMainImpl @Inject constructor(
     private val apiService: MainApi,
     private val mapper: ResponseDataMapper
-) : Repository {
+) : RepositoryMain {
     override suspend fun getAllProducts() =
         mapper.mappingProductResponse(apiService.getAllProducts())
 

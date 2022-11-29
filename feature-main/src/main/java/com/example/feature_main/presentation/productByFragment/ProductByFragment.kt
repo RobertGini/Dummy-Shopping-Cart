@@ -11,8 +11,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.core.domain.interfaces.OnProductClick
 import com.example.core.utils.Status
-import com.example.dummyshoppingcart.domain.interfaces.OnProductClick
 import com.example.dummyshoppingcart.domain.model.ProductEntity
 import com.example.dummyshoppingcart.presentation.adapter.ProductAdapter
 import com.example.feature_main.R
@@ -20,12 +20,14 @@ import com.example.feature_main.databinding.FragmentProductByBinding
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
-class ProductByFragment : DaggerFragment(R.layout.fragment_product_by), OnProductClick {
-
+class ProductByFragment :
+    DaggerFragment(R.layout.fragment_product_by),
+    OnProductClick<View, ProductEntity>
+{
     private var _binding: FragmentProductByBinding? = null
     private val binding get() = _binding!!
 
-    private var productListener: OnProductClick = this
+    private var productListener: OnProductClick<View, ProductEntity> = this
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory

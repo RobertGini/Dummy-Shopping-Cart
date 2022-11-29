@@ -40,7 +40,6 @@ android {
 
 dependencies {
     implementation project(':core')
-    implementation project(':feature-cart')
     implementation project(':feature-catalogue')
 
     implementation 'androidx.core:core-ktx:1.7.0'

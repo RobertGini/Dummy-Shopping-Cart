@@ -1,4 +1,4 @@
-package com.example.dummyshoppingcart.presentation.mainFragment
+package com.example.feature_main.presentation.mainFragment
 
 import android.os.Bundle
 import android.util.Log
@@ -13,11 +13,13 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.dummyshoppingcart.domain.interfaces.OnCategoryClick
-import com.example.dummyshoppingcart.domain.interfaces.OnProductClick
+import com.example.core.domain.interfaces.OnCategoryClick
+import com.example.core.domain.interfaces.OnProductClick
 import com.example.dummyshoppingcart.domain.model.CategoryEntity
 import com.example.dummyshoppingcart.domain.model.ProductEntity
 import com.example.dummyshoppingcart.presentation.adapter.MainAdapter
+import com.example.dummyshoppingcart.presentation.mainFragment.MainFragmentDirections
+import com.example.dummyshoppingcart.presentation.mainFragment.MainViewModel
 import com.example.feature_main.R
 import com.example.feature_main.databinding.FragmentMainBinding
 import dagger.android.support.DaggerFragment
@@ -25,14 +27,14 @@ import javax.inject.Inject
 
 class MainFragment:
     DaggerFragment(R.layout.fragment_main),
-    OnProductClick,
-    OnCategoryClick
+    OnProductClick<View, ProductEntity>,
+    OnCategoryClick<View, CategoryEntity>
 {
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
 
-    private var productListener: OnProductClick = this
-    private var categoryListener: OnCategoryClick = this
+    private var productListener: OnProductClick<View, ProductEntity> = this
+    private var categoryListener: OnCategoryClick<View, CategoryEntity> = this
     private val mainAdapter by lazy {
         MainAdapter (
             productListener,
@@ -142,7 +144,4 @@ class MainFragment:
         const val TAG = "MainFragment"
         fun newInstance() = MainFragment()
     }
-
-
-
-}
+    }

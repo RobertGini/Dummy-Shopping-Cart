@@ -18,7 +18,6 @@ import com.example.core.domain.interfaces.OnProductClick
 import com.example.dummyshoppingcart.domain.model.CategoryEntity
 import com.example.dummyshoppingcart.domain.model.ProductEntity
 import com.example.dummyshoppingcart.presentation.adapter.MainAdapter
-import com.example.dummyshoppingcart.presentation.mainFragment.MainFragmentDirections
 import com.example.dummyshoppingcart.presentation.mainFragment.MainViewModel
 import com.example.feature_main.R
 import com.example.feature_main.databinding.FragmentMainBinding

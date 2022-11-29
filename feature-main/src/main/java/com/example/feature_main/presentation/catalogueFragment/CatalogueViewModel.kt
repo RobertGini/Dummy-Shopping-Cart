@@ -1,4 +1,4 @@
-package com.example.dummyshoppingcart.presentation.catalogueFragment
+package com.example.feature_main.presentation.catalogueFragment
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData

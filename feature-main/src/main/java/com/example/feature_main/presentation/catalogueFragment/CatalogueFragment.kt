@@ -1,4 +1,4 @@
-package com.example.dummyshoppingcart.presentation.catalogueFragment
+package com.example.feature_main.presentation.catalogueFragment
 
 import android.os.Bundle
 import android.util.Log
@@ -12,10 +12,10 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.core.domain.interfaces.OnCategoryClick
 import com.example.core.utils.Status
-import com.example.dummyshoppingcart.R
-import com.example.dummyshoppingcart.databinding.FragmentCatalogueBinding
 import com.example.dummyshoppingcart.domain.model.CategoryEntity
 import com.example.dummyshoppingcart.presentation.adapter.CategoryAdapter
+import com.example.feature_main.R
+import com.example.feature_main.databinding.FragmentCatalogueBinding
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 

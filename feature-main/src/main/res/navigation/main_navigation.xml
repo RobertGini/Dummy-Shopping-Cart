@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_main"
-        android:name="com.example.dummyshoppingcart.presentation.mainFragment.MainFragment"
+        android:name="com.example.feature_main.presentation.mainFragment.MainFragment"
         android:label="@string/main"
         tools:layout="@layout/fragment_main" >
         <action
@@ -15,6 +15,16 @@
             app:destination="@id/description_fragment" />
         <action
             android:id="@+id/action_navigation_main_to_product_by_fragment"
+            app:destination="@id/product_by_fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_catalogue"
+        android:name="com.example.feature_main.presentation.catalogueFragment.CatalogueFragment"
+        android:label="@string/catalogue"
+        tools:layout="@layout/fragment_catalogue" >
+        <action
+            android:id="@+id/action_navigation_catalogue_to_productByFragment"
             app:destination="@id/product_by_fragment" />
     </fragment>
 

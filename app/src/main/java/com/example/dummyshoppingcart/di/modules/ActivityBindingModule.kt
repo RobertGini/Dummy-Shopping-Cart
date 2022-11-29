@@ -1,7 +1,7 @@
 package com.example.dummyshoppingcart.di.modules
 
 import com.example.dummyshoppingcart.di.scopes.ActivityScoped
-import com.example.dummyshoppingcart.presentation.MainActivity
+import com.example.dummyshoppingcart.presentation.activity.MainActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

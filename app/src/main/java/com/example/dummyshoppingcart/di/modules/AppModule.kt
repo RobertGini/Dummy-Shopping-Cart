@@ -9,7 +9,8 @@ import dagger.Module
 @Module(
     includes = [
         ViewModelModule::class,
-        DataModule::class
+        DataModule::class,
+        ResourceProviderModule::class
     ]
 )
 abstract class AppModule {

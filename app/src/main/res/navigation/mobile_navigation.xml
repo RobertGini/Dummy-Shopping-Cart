@@ -20,7 +20,7 @@
 
     <fragment
         android:id="@+id/navigation_catalogue"
-        android:name="com.example.dummyshoppingcart.presentation.catalogueFragment.CatalogueFragment"
+        android:name="com.example.feature_main.presentation.catalogueFragment.CatalogueFragment"
         android:label="@string/catalogue"
         tools:layout="@layout/fragment_catalogue" >
         <action

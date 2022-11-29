@@ -4,8 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.core.di.ViewModelFactory
 import com.example.dummyshoppingcart.di.scopes.AppScoped
-import com.example.dummyshoppingcart.presentation.cartFragment.CartViewModel
-import com.example.dummyshoppingcart.presentation.catalogueFragment.CatalogueViewModel
+import com.example.feature_main.presentation.catalogueFragment.CatalogueViewModel
 import com.example.dummyshoppingcart.presentation.mainFragment.MainViewModel
 import com.example.dummyshoppingcart.presentation.productByFragment.ProductByViewModel
 import dagger.Binds

@@ -1,4 +1,4 @@
-package com.example.dummyshoppingcart.presentation
+package com.example.dummyshoppingcart.presentation.activity
 
 import android.os.Bundle
 import androidx.navigation.findNavController

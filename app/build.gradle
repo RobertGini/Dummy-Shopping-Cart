@@ -45,12 +45,18 @@ dependencies {
     implementation project(':core')
     implementation project(':feature-cart')
     implementation project(':feature-main')
+    implementation project(':feature-details')
+    implementation project(':navigation')
 
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'com.google.android.material:material:1.7.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+
+    //Firebase
+    implementation platform('com.google.firebase:firebase-bom:31.1.0')
+    implementation 'com.google.firebase:firebase-database-ktx:20.1.0'
 
     //Fragments
     implementation 'androidx.fragment:fragment-ktx:1.5.2'

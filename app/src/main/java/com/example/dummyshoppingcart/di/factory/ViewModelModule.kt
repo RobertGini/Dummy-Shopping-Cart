@@ -7,6 +7,7 @@ import com.example.dummyshoppingcart.di.scopes.AppScoped
 import com.example.feature_main.presentation.catalogueFragment.CatalogueViewModel
 import com.example.dummyshoppingcart.presentation.mainFragment.MainViewModel
 import com.example.dummyshoppingcart.presentation.productByFragment.ProductByViewModel
+import com.example.feature_details.presentation.viewModel.DescriptionViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -28,6 +29,11 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(ProductByViewModel::class)
     abstract fun bindProductByViewModelViewModel(viewModel: ProductByViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(DescriptionViewModel::class)
+    abstract fun bindDescriptionViewModelViewModel(viewModel: DescriptionViewModel): ViewModel
 
     @Binds
     @AppScoped

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "529302046076",
+    "firebase_url": "https://dummy-shopping-cart-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "dummy-shopping-cart",
+    "storage_bucket": "dummy-shopping-cart.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:529302046076:android:f7d994286d364f6d4290f9",
+        "android_client_info": {
+          "package_name": "com.example.feature_cart"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "529302046076-11v9lq22vtfe4l6aigclvf13dqh4a8uv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBArvCBv0Qy1pR88_kaqmD_K3MkTiVInvA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "529302046076-11v9lq22vtfe4l6aigclvf13dqh4a8uv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

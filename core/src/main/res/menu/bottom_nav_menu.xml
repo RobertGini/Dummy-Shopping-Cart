@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@id/main_flow"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="@string/main" />
+
+    <item
+        android:id="@id/catalogue_flow"
+        android:icon="@drawable/ic_catalogue"
+        android:title="@string/catalogue" />
+
+    <item
+        android:id="@id/cart_flow"
+        android:icon="@drawable/ic_cart"
+        android:title="@string/cart" />
+
+</menu>

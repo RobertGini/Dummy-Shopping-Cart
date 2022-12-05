@@ -3,7 +3,7 @@ package com.example.dummyshoppingcart.domain.iterators
 import com.example.dummyshoppingcart.domain.interfaces.RepositoryMain
 import com.example.dummyshoppingcart.domain.model.CategoryEntity
 import com.example.dummyshoppingcart.domain.model.ProductEntity
-import com.example.dummyshoppingcart.domain.useCase.UseCase
+import com.example.feature_main.domain.interfaces.UseCase
 import javax.inject.Inject
 
 class IteratorUseCase @Inject constructor(

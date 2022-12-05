@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_nav_graph"
+    app:startDestination="@id/main_flow">
+
+    <include app:graph="@navigation/main_flow" />
+    <include app:graph="@navigation/cart_flow" />
+    <include app:graph="@navigation/catalogue_flow" />
+    <include app:graph="@navigation/details_flow" />
+
+
+    <action
+        android:id="@+id/action_global_details_flow"
+        app:destination="@id/details_flow"
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:exitAnim="@anim/nav_default_exit_anim"
+        app:popUpTo="@id/main_nav_graph" >
+        <argument
+            android:name="product_details"
+            app:argType="integer"/>
+    </action>
+
+    <action
+        android:id="@+id/action_global_catalogue_flow"
+        app:destination="@id/catalogue_flow"
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:exitAnim="@anim/nav_default_exit_anim"
+        app:popUpTo="@id/main_nav_graph" />
+
+    <action
+        android:id="@+id/action_global_cart_flow"
+        app:destination="@id/cart_flow"
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:exitAnim="@anim/nav_default_exit_anim"
+        app:popUpTo="@id/main_nav_graph" />
+
+    <action
+        android:id="@+id/action_global_main_flow"
+        app:destination="@id/main_flow"
+        app:popUpTo="@id/main_nav_graph" />
+
+</navigation>

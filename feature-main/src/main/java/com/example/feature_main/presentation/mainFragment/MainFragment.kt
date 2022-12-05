@@ -21,21 +21,22 @@ import com.example.dummyshoppingcart.presentation.adapter.MainAdapter
 import com.example.dummyshoppingcart.presentation.mainFragment.MainViewModel
 import com.example.feature_main.R
 import com.example.feature_main.databinding.FragmentMainBinding
+import com.example.navigation.DeepLinkDestination
+import com.example.navigation.deepLinkNavigateTo
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
-class MainFragment:
+class MainFragment :
     DaggerFragment(R.layout.fragment_main),
     OnProductClick<View, ProductEntity>,
-    OnCategoryClick<View, CategoryEntity>
-{
+    OnCategoryClick<View, CategoryEntity> {
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
 
     private var productListener: OnProductClick<View, ProductEntity> = this
     private var categoryListener: OnCategoryClick<View, CategoryEntity> = this
     private val mainAdapter by lazy {
-        MainAdapter (
+        MainAdapter(
             productListener,
             categoryListener
         )
@@ -95,11 +96,12 @@ class MainFragment:
 
                 searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                     override fun onQueryTextSubmit(query: String?): Boolean {
-                        if (query != null){
+                        if (query != null) {
                             Log.d(TAG, "Submit Search")
                         }
                         return false
                     }
+
                     override fun onQueryTextChange(newText: String?): Boolean {
                         return false
                     }
@@ -120,17 +122,16 @@ class MainFragment:
     }
 
     override fun onProductClicked(view: View, productEntity: ProductEntity) {
-        val action =
-            MainFragmentDirections.actionNavigationMainToDescriptionFragment(productEntity)
-        findNavController().navigate(action)
+        val productId = productEntity.product_id.toInt()
+        findNavController().deepLinkNavigateTo(DeepLinkDestination.Details(productId))
         Log.d(TAG, "Clicked on Product")
     }
 
     override fun onCategoryClick(view: View, categoryEntity: CategoryEntity) {
         val productId = categoryEntity.category_id.toInt()
-        val action =
-            MainFragmentDirections.actionNavigationMainToProductByFragment(productId)
-        findNavController().navigate(action)
+//        val action =
+//            MainFragmentDirections.actionNavigationMainToProductByFragment(productId)
+//        findNavController().navigate(action)
         Log.d(TAG, "Clicked on category")
     }
 
@@ -143,4 +144,4 @@ class MainFragment:
         const val TAG = "MainFragment"
         fun newInstance() = MainFragment()
     }
-    }
+}

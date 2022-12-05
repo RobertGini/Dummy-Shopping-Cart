@@ -75,9 +75,9 @@ class CatalogueFragment :
 
     override fun onCategoryClick(view: View, categoryEntity: CategoryEntity) {
         val productId = categoryEntity.category_id.toInt()
-        val action =
-            CatalogueFragmentDirections.actionNavigationCatalogueToProductByFragment(productId)
-        findNavController().navigate(action)
+//        val action =
+//            CatalogueFragmentDirections.actionNavigationCatalogueToProductByFragment(productId)
+//        findNavController().navigate(action)
         Log.d(TAG, "Clicked on category")
     }
 

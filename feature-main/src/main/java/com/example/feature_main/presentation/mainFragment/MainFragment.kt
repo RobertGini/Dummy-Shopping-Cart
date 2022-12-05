@@ -30,6 +30,7 @@ class MainFragment :
     DaggerFragment(R.layout.fragment_main),
     OnProductClick<View, ProductEntity>,
     OnCategoryClick<View, CategoryEntity> {
+
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
 
@@ -121,6 +122,7 @@ class MainFragment :
         }, viewLifecycleOwner, Lifecycle.State.RESUMED)
     }
 
+    //On click sending ID of Item to DetailsFragment to set UI
     override fun onProductClicked(view: View, productEntity: ProductEntity) {
         val productId = productEntity.product_id.toInt()
         findNavController().deepLinkNavigateTo(DeepLinkDestination.Details(productId))
@@ -129,9 +131,7 @@ class MainFragment :
 
     override fun onCategoryClick(view: View, categoryEntity: CategoryEntity) {
         val productId = categoryEntity.category_id.toInt()
-//        val action =
-//            MainFragmentDirections.actionNavigationMainToProductByFragment(productId)
-//        findNavController().navigate(action)
+        findNavController().deepLinkNavigateTo(DeepLinkDestination.ProductBy(productId))
         Log.d(TAG, "Clicked on category")
     }
 

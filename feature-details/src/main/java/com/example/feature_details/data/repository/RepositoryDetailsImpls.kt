@@ -12,4 +12,7 @@ class RepositoryDetailsImpl @Inject constructor(
 ) : RepositoryDetails {
     override suspend fun getProductsDetails(productId: Int): DetailsEntity =
         mapper.mapProduct(api.getProductsDetails(productId))
+
+    override suspend fun getProductByCategory(productId: Int): List<DetailsEntity> =
+        mapper.mappingProductResponse(api.getProductByCategory(productId))
 }

@@ -9,4 +9,9 @@ interface DetailsApi {
     suspend fun getProductsDetails(
         @Path("id") id: Int
     ): ProductDetails
+
+    @GET("categories/{id}/products")
+    suspend fun getProductByCategory(
+        @Path("id") id: Int
+    ): List<ProductDetails>
 }

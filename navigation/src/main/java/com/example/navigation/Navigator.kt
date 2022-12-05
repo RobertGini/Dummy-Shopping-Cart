@@ -12,7 +12,18 @@ class Navigator {
             navController.navigate(MainNavGraphDirections.actionGlobalCatalogueFlow())
         NavigationFlow.CartFlow ->
             navController.navigate(MainNavGraphDirections.actionGlobalCartFlow())
+
         is NavigationFlow.DetailsFlow ->
-            navController.navigate(MainNavGraphDirections.actionGlobalDetailsFlow(navigationFlow.detailsId))
+            navController.navigate(
+                MainNavGraphDirections.actionGlobalDetailsFlow(
+                    navigationFlow.detailsId
+                )
+            )
+        is NavigationFlow.ProductByFlow ->
+            navController.navigate(
+                MainNavGraphDirections.actionGlobalProductByFlow(
+                    navigationFlow.categoryId
+                )
+            )
     }
 }

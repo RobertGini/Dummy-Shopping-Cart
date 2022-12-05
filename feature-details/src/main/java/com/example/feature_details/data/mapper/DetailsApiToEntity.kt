@@ -12,6 +12,12 @@ class DetailsApiToEntity @Inject constructor(){
 
     @Singleton
     @Provides
+    fun mappingProductResponse(response: List<ProductDetails>): List<DetailsEntity> {
+        return response.map { mapProduct(it) }
+    }
+
+    @Singleton
+    @Provides
     fun mapProduct(response: ProductDetails): DetailsEntity {
         return DetailsEntity(
             details_id = response.details_id.toString(),

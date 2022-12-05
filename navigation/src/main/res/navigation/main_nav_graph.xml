@@ -8,17 +8,28 @@
     <include app:graph="@navigation/cart_flow" />
     <include app:graph="@navigation/catalogue_flow" />
     <include app:graph="@navigation/details_flow" />
-
+    <include app:graph="@navigation/product_by_flow" />
 
     <action
         android:id="@+id/action_global_details_flow"
         app:destination="@id/details_flow"
         app:enterAnim="@anim/nav_default_enter_anim"
         app:exitAnim="@anim/nav_default_exit_anim"
-        app:popUpTo="@id/main_nav_graph" >
+        app:popUpTo="@id/main_nav_graph">
         <argument
             android:name="product_details"
-            app:argType="integer"/>
+            app:argType="integer" />
+    </action>
+
+    <action
+        android:id="@+id/action_global_product_by_flow"
+        app:destination="@id/product_by_flow"
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:exitAnim="@anim/nav_default_exit_anim"
+        app:popUpTo="@id/main_nav_graph">
+        <argument
+            android:name="category_id"
+            app:argType="integer" />
     </action>
 
     <action
@@ -39,5 +50,6 @@
         android:id="@+id/action_global_main_flow"
         app:destination="@id/main_flow"
         app:popUpTo="@id/main_nav_graph" />
+
 
 </navigation>

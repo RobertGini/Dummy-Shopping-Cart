@@ -29,5 +29,7 @@ fun NavController.deepLinkNavigateTo(
 sealed class DeepLinkDestination(val address: String) {
     class Details(product_details_id: Int) :
         DeepLinkDestination("example://details/exampleArgs?msg=${product_details_id}")
+    class ProductBy(category_id: Int) :
+            DeepLinkDestination("example://product_by/exampleArgs?msg=${category_id}")
     object Main: DeepLinkDestination("example://main")
 }

@@ -8,7 +8,7 @@ import kotlinx.coroutines.Dispatchers
 import javax.inject.Inject
 
 class CatalogueViewModel @Inject constructor(
-    val repository: IteratorUseCase
+    private val repository: IteratorUseCase
 ) : ViewModel() {
 
     fun getListOfCategories() = liveData(Dispatchers.IO) {

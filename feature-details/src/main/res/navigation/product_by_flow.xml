@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/product_by_flow"
+    app:startDestination="@id/product_by_fragment">
+
+    <fragment
+        android:id="@+id/product_by_fragment"
+        android:name="com.example.feature_details.presentation.fragment.ProductByFragment"
+        android:label="@string/products">
+        <argument
+            android:name="category_id"
+            android:defaultValue="0"
+            app:argType="integer" />
+        <deepLink
+            android:id="@+id/deepLink"
+            app:uri="example://product_by/exampleArgs?msg={category_id}" />
+    </fragment>
+</navigation>

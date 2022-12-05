@@ -1,4 +1,4 @@
-package com.example.dummyshoppingcart.presentation.productByFragment
+package com.example.feature_details.presentation.fragment
 
 import android.os.Bundle
 import android.util.Log
@@ -13,10 +13,11 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.core.domain.interfaces.OnProductClick
 import com.example.core.utils.Status
-import com.example.dummyshoppingcart.domain.model.ProductEntity
-import com.example.dummyshoppingcart.presentation.adapter.ProductAdapter
-import com.example.feature_main.R
-import com.example.feature_main.databinding.FragmentProductByBinding
+import com.example.feature_details.R
+import com.example.feature_details.databinding.FragmentProductByBinding
+import com.example.feature_details.domain.model.DetailsEntity
+import com.example.feature_details.presentation.adapter.ProductByAdapter
+import com.example.feature_details.presentation.viewModel.ProductByViewModel
 import com.example.navigation.DeepLinkDestination
 import com.example.navigation.deepLinkNavigateTo
 import dagger.android.support.DaggerFragment
@@ -24,12 +25,12 @@ import javax.inject.Inject
 
 class ProductByFragment :
     DaggerFragment(R.layout.fragment_product_by),
-    OnProductClick<View, ProductEntity>
+    OnProductClick<View, DetailsEntity>
 {
     private var _binding: FragmentProductByBinding? = null
     private val binding get() = _binding!!
 
-    private var productListener: OnProductClick<View, ProductEntity> = this
+    private var productListener: OnProductClick<View, DetailsEntity> = this
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -45,14 +46,14 @@ class ProductByFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //getFromIdCatalogue()
+        getFromIdCatalogue()
     }
 
-//    private fun getFromIdCatalogue() {
-//        val args: ProductByFragmentArgs by navArgs()
-//        val item = args.productId
-//        setupObservers(item)
-//    }
+    private fun getFromIdCatalogue() {
+        val args: ProductByFragmentArgs by navArgs()
+        val item = args.categoryId
+        setupObservers(item)
+    }
 
     private fun setupObservers(productId: Int){
         productByViewModel.getProductByCategory(productId).observe(viewLifecycleOwner) {
@@ -71,8 +72,8 @@ class ProductByFragment :
         }
     }
 
-    private fun setupAdapter(data: List<ProductEntity>) {
-        val productAdapter = ProductAdapter(productListener)
+    private fun setupAdapter(data: List<DetailsEntity>) {
+        val productAdapter = ProductByAdapter(productListener)
         binding.rcProductBy.apply {
             layoutManager =
                 GridLayoutManager(requireContext(), 2)
@@ -82,8 +83,8 @@ class ProductByFragment :
         productAdapter.setItems(data)
     }
 
-    override fun onProductClicked(view: View, productEntity: ProductEntity) {
-        val productId = productEntity.product_id.toInt()
+    override fun onProductClicked(view: View, productEntity: DetailsEntity) {
+        val productId = productEntity.details_id.toInt()
         findNavController().deepLinkNavigateTo(DeepLinkDestination.Details(productId))
         Log.d(TAG, "Clicked")
     }

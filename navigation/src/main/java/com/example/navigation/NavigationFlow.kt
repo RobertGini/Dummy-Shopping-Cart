@@ -5,4 +5,5 @@ sealed class NavigationFlow {
     object CatalogueFlow : NavigationFlow()
     object CartFlow : NavigationFlow()
     class DetailsFlow(val detailsId: Int) : NavigationFlow()
+    class ProductByFlow(val categoryId: Int) : NavigationFlow()
 }

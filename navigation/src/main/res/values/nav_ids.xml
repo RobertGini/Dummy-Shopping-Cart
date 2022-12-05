@@ -4,4 +4,5 @@
     <item name="catalogue_flow" type="id" />
     <item name="cart_flow" type="id"/>
     <item name="details_flow" type="id"/>
+    <item name="product_by_flow" type="id"/>
 </resources>

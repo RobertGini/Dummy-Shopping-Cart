@@ -11,4 +11,8 @@ class DetailsIterator @Inject constructor(
     override suspend fun getProductsDetails(productId: Int): DetailsEntity {
         return repositoryDetails.getProductsDetails(productId)
     }
+
+    override suspend fun getProductByCategory(productId: Int): List<DetailsEntity> {
+        return repositoryDetails.getProductByCategory(productId)
+    }
 }

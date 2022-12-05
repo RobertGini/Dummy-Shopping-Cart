@@ -4,4 +4,6 @@ import com.example.feature_details.domain.model.DetailsEntity
 
 interface RepositoryDetails {
     suspend fun getProductsDetails(productId: Int): DetailsEntity
+
+    suspend fun getProductByCategory(productId: Int): List<DetailsEntity>
 }

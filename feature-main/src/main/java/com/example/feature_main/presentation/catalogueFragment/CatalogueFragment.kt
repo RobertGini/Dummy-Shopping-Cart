@@ -16,6 +16,8 @@ import com.example.dummyshoppingcart.domain.model.CategoryEntity
 import com.example.dummyshoppingcart.presentation.adapter.CategoryAdapter
 import com.example.feature_main.R
 import com.example.feature_main.databinding.FragmentCatalogueBinding
+import com.example.navigation.DeepLinkDestination
+import com.example.navigation.deepLinkNavigateTo
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
@@ -75,9 +77,7 @@ class CatalogueFragment :
 
     override fun onCategoryClick(view: View, categoryEntity: CategoryEntity) {
         val productId = categoryEntity.category_id.toInt()
-//        val action =
-//            CatalogueFragmentDirections.actionNavigationCatalogueToProductByFragment(productId)
-//        findNavController().navigate(action)
+        findNavController().deepLinkNavigateTo(DeepLinkDestination.ProductBy(productId))
         Log.d(TAG, "Clicked on category")
     }
 

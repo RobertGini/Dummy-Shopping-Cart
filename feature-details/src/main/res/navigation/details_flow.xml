@@ -9,9 +9,9 @@
         android:name="com.example.feature_details.presentation.fragment.DescriptionFragment"
         android:label="@string/description">
         <argument
-            android:defaultValue="0"
             android:name="product_details_id"
-            app:argType="integer"/>
+            android:defaultValue="0"
+            app:argType="integer" />
         <deepLink
             android:id="@+id/deepLink"
             app:uri="example://details/exampleArgs?msg={product_details_id}" />

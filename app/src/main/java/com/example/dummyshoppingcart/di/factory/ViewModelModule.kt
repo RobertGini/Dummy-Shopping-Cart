@@ -6,7 +6,7 @@ import com.example.core.di.ViewModelFactory
 import com.example.dummyshoppingcart.di.scopes.AppScoped
 import com.example.feature_main.presentation.catalogueFragment.CatalogueViewModel
 import com.example.dummyshoppingcart.presentation.mainFragment.MainViewModel
-import com.example.dummyshoppingcart.presentation.productByFragment.ProductByViewModel
+import com.example.feature_details.presentation.viewModel.ProductByViewModel
 import com.example.feature_details.presentation.viewModel.DescriptionViewModel
 import dagger.Binds
 import dagger.Module

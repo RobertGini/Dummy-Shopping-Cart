@@ -11,9 +11,4 @@ interface MainApi {
 
     @GET("categories/")
     suspend fun getAllCategories(): List<CategoryResponse>
-
-    @GET("categories/{id}/products")
-    suspend fun getProductByCategory(
-        @Path("id") id: Int
-    ): List<ProductResponse>
 }

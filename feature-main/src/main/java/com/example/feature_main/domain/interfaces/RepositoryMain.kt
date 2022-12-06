@@ -7,6 +7,4 @@ interface RepositoryMain {
     suspend fun getAllProducts(): List<ProductEntity>
 
     suspend fun getAllCategories(): List<CategoryEntity>
-
-    suspend fun getProductByCategory(productId: Int): List<ProductEntity>
 }

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="available_products">Available products</string>
+    <string name="available_categories">List of all categories</string>
+
+</resources>

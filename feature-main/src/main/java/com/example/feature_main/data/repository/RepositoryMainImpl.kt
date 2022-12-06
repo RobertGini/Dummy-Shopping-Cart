@@ -15,7 +15,4 @@ class RepositoryMainImpl @Inject constructor(
 
     override suspend fun getAllCategories() =
         mapper.mappingCategoryResponse(apiService.getAllCategories())
-
-    override suspend fun getProductByCategory(productId: Int): List<ProductEntity> =
-        mapper.mappingProductResponse(apiService.getProductByCategory(productId))
 }

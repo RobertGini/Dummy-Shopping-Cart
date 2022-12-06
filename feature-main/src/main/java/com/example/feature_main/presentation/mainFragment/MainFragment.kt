@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.core.domain.interfaces.OnCategoryClick
 import com.example.core.domain.interfaces.OnProductClick
+import com.example.core.utils.Status
 import com.example.dummyshoppingcart.domain.model.CategoryEntity
 import com.example.dummyshoppingcart.domain.model.ProductEntity
 import com.example.dummyshoppingcart.presentation.adapter.MainAdapter
@@ -75,15 +76,25 @@ class MainFragment :
     }
 
     private fun setupProduct() {
+        mainViewModel.setup()
         mainViewModel.listItems.observe(viewLifecycleOwner) {
-            it.let {
-                mainAdapter.items = it
-                mainAdapter.notifyDataSetChanged()
-                Log.d(TAG, "${mainAdapter.items}")
+            it?.let { resource ->
+                when (resource.status) {
+                    Status.SUCCESS -> {
+                        mainAdapter.items = it.data
+                        mainAdapter.notifyDataSetChanged()
+                        Log.d(TAG, "${mainAdapter.items}")
+                    }
+                    Status.ERROR -> {
+                    }
+                    Status.LOADING -> {
+                    }
+                }
             }
         }
     }
 
+    //Creating a specific toolbar for MainFragment
     private fun setupToolbarInFragment() {
         val menuHost: MenuHost = requireActivity()
 

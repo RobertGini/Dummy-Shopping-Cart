@@ -8,6 +8,7 @@ import com.example.feature_main.presentation.catalogueFragment.CatalogueViewMode
 import com.example.dummyshoppingcart.presentation.mainFragment.MainViewModel
 import com.example.feature_details.presentation.viewModel.ProductByViewModel
 import com.example.feature_details.presentation.viewModel.DescriptionViewModel
+import com.example.feature_main.presentation.searchFragment.SearchViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -28,12 +29,17 @@ abstract class ViewModelModule {
     @Binds
     @IntoMap
     @ViewModelKey(ProductByViewModel::class)
-    abstract fun bindProductByViewModelViewModel(viewModel: ProductByViewModel): ViewModel
+    abstract fun bindProductByViewModel(viewModel: ProductByViewModel): ViewModel
 
     @Binds
     @IntoMap
     @ViewModelKey(DescriptionViewModel::class)
-    abstract fun bindDescriptionViewModelViewModel(viewModel: DescriptionViewModel): ViewModel
+    abstract fun bindDescriptionViewModel(viewModel: DescriptionViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(SearchViewModel::class)
+    abstract fun bindSearchViewModel(viewModel: SearchViewModel): ViewModel
 
     @Binds
     @AppScoped

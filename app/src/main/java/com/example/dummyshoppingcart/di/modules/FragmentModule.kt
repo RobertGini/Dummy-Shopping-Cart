@@ -6,6 +6,7 @@ import com.example.feature_main.presentation.catalogueFragment.CatalogueFragment
 import com.example.feature_details.presentation.fragment.DescriptionFragment
 import com.example.feature_details.presentation.fragment.ProductByFragment
 import com.example.feature_main.presentation.mainFragment.MainFragment
+import com.example.feature_main.presentation.searchFragment.SearchFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -30,4 +31,8 @@ abstract class FragmentModule {
     @FragmentScoped
     @ContributesAndroidInjector
     abstract fun productByFragment(): ProductByFragment
+
+    @FragmentScoped
+    @ContributesAndroidInjector
+    abstract fun searchFragment(): SearchFragment
 }

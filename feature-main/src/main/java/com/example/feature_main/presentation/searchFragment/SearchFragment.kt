@@ -1,4 +1,4 @@
-package com.example.feature_main.presentation.mainFragment
+package com.example.feature_main.presentation.searchFragment
 
 import android.os.Bundle
 import android.util.Log
@@ -11,79 +11,55 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.core.domain.interfaces.OnCategoryClick
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.core.domain.interfaces.OnProductClick
 import com.example.core.utils.Status
-import com.example.dummyshoppingcart.domain.model.CategoryEntity
 import com.example.dummyshoppingcart.domain.model.ProductEntity
-import com.example.dummyshoppingcart.presentation.adapter.MainAdapter
-import com.example.dummyshoppingcart.presentation.mainFragment.MainViewModel
 import com.example.feature_main.R
-import com.example.feature_main.databinding.FragmentMainBinding
+import com.example.feature_main.databinding.FragmentSearchBinding
+import com.example.feature_main.presentation.adapter.SearchAdapter
 import com.example.navigation.DeepLinkDestination
 import com.example.navigation.deepLinkNavigateTo
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
-class MainFragment :
-    DaggerFragment(R.layout.fragment_main),
-    OnProductClick<View, ProductEntity>,
-    OnCategoryClick<View, CategoryEntity> {
+class SearchFragment :
+    DaggerFragment(R.layout.fragment_search),
+    OnProductClick<View, ProductEntity> {
 
-    private var _binding: FragmentMainBinding? = null
+    private var _binding: FragmentSearchBinding? = null
     private val binding get() = _binding!!
 
     private var productListener: OnProductClick<View, ProductEntity> = this
-    private var categoryListener: OnCategoryClick<View, CategoryEntity> = this
-    private val mainAdapter by lazy {
-        MainAdapter(
-            productListener,
-            categoryListener
-        )
+    private val searchAdapter by lazy {
+        SearchAdapter( productListener )
     }
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-    val mainViewModel: MainViewModel by viewModels { viewModelFactory }
+    val searchViewModel: SearchViewModel by viewModels { viewModelFactory }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentMainBinding.inflate(layoutInflater)
+        _binding = FragmentSearchBinding.inflate(layoutInflater)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupAdapter()
-        setupProduct()
         setupToolbarInFragment()
+        setupObservers()
     }
 
-    private fun setupAdapter() {
-        binding.rcMain.apply {
-            adapter = mainAdapter
-            layoutManager = LinearLayoutManager(
-                requireContext(),
-                RecyclerView.VERTICAL,
-                false
-            )
-            itemAnimator = DefaultItemAnimator()
-        }
-    }
-
-    private fun setupProduct() {
-        mainViewModel.setup()
-        mainViewModel.listItems.observe(viewLifecycleOwner) {
+    private fun setupObservers() {
+        searchViewModel.getProducts().observe(viewLifecycleOwner) {
             it?.let { resource ->
                 when (resource.status) {
                     Status.SUCCESS -> {
-                        mainAdapter.items = it.data
-                        mainAdapter.notifyDataSetChanged()
-                        Log.d(TAG, "${mainAdapter.items}")
+                        val data = resource.data!!
+                        setupAdapter(data)
                     }
                     Status.ERROR -> {
                     }
@@ -94,7 +70,18 @@ class MainFragment :
         }
     }
 
-    //Creating a specific toolbar for MainFragment
+    private fun setupAdapter(data: List<ProductEntity>) {
+        binding.rcSearch.apply {
+            layoutManager =
+                GridLayoutManager(requireContext(), 2)
+            adapter = searchAdapter
+            itemAnimator = DefaultItemAnimator()
+        }
+        searchAdapter.setItems(data)
+        searchAdapter.notifyDataSetChanged()
+        //searchAdapter.setItems(data)
+    }
+
     private fun setupToolbarInFragment() {
         val menuHost: MenuHost = requireActivity()
 
@@ -109,12 +96,15 @@ class MainFragment :
                 searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                     override fun onQueryTextSubmit(query: String?): Boolean {
                         if (query != null) {
+                            searchAdapter.filter.filter(query)
                             Log.d(TAG, "Submit Search")
                         }
                         return false
                     }
 
                     override fun onQueryTextChange(newText: String?): Boolean {
+                        searchAdapter.filter.filter(newText)
+                        Log.d(TAG, "Input words")
                         return false
                     }
                 })
@@ -123,8 +113,6 @@ class MainFragment :
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
                 return when (menuItem.itemId) {
                     R.id.toolbar_search -> {
-                        val action = MainFragmentDirections.actionMainFragmentToSearchFragment()
-                        findNavController().navigate(action)
                         Log.d(TAG, "Clicked on ItemMenu")
                         true
                     }
@@ -141,19 +129,12 @@ class MainFragment :
         Log.d(TAG, "Clicked on Product")
     }
 
-    override fun onCategoryClick(view: View, categoryEntity: CategoryEntity) {
-        val productId = categoryEntity.category_id.toInt()
-        findNavController().deepLinkNavigateTo(DeepLinkDestination.ProductBy(productId))
-        Log.d(TAG, "Clicked on category")
-    }
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
 
     companion object {
-        const val TAG = "MainFragment"
-        fun newInstance() = MainFragment()
+        private const val TAG = "SearchFragment"
     }
 }

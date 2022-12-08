@@ -11,5 +11,4 @@ class FirebaseModule {
     @Provides
     @Singleton
     fun provideFireBaseDatabaseInstance(): FirebaseDatabase = FirebaseDatabase.getInstance()
-
 }

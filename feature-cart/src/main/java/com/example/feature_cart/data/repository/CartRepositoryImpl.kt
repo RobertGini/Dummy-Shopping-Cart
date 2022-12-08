@@ -1,5 +1,6 @@
 package com.example.feature_cart.data.repository
 
+import com.example.core.utils.Resource
 import com.example.feature_cart.data.model.Cart
 import com.example.feature_cart.domain.repository.CartRepository
 import com.google.firebase.database.FirebaseDatabase
@@ -9,23 +10,18 @@ class CartRepositoryImpl @Inject constructor(
     private val database: FirebaseDatabase
 ) : CartRepository {
 
-    override fun addCart(cart: Cart) {
-        val reference = database.reference.child(FireDatabase.CART).push()
-        val uniqueKey = reference.key?: "invalid"
-        cart.cart_id = uniqueKey
-        reference
-            .setValue(cart)
-    }
-
-    override fun getCart(cart: Cart) {
-        val reference = database.reference
+    override suspend fun getCart(result: (Resource<List<Cart>>) -> Unit) {
+        val reference = database.reference.child(FireDatabase.CART)
         reference.get()
             .addOnSuccessListener {
-                val carts = arrayListOf<Cart>()
+                val carts = ArrayList<Cart>()
                 for (item in it.children) {
                     val cart = item.getValue(Cart::class.java)
                     carts.add(cart!!)
                 }
+                result.invoke(
+                    Resource.success(carts)
+                )
             }
     }
 

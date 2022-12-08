@@ -6,6 +6,7 @@ import com.example.core.di.ViewModelFactory
 import com.example.dummyshoppingcart.di.scopes.AppScoped
 import com.example.feature_main.presentation.catalogueFragment.CatalogueViewModel
 import com.example.dummyshoppingcart.presentation.mainFragment.MainViewModel
+import com.example.feature_cart.presentation.viewModel.CartViewModel
 import com.example.feature_details.presentation.viewModel.ProductByViewModel
 import com.example.feature_details.presentation.viewModel.DescriptionViewModel
 import com.example.feature_main.presentation.searchFragment.SearchViewModel
@@ -40,6 +41,11 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(SearchViewModel::class)
     abstract fun bindSearchViewModel(viewModel: SearchViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(CartViewModel::class)
+    abstract fun bindCartViewModel(viewModel: CartViewModel): ViewModel
 
     @Binds
     @AppScoped

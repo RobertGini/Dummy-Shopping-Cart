@@ -79,7 +79,6 @@ class SearchFragment :
         }
         searchAdapter.setItems(data)
         searchAdapter.notifyDataSetChanged()
-        //searchAdapter.setItems(data)
     }
 
     private fun setupToolbarInFragment() {

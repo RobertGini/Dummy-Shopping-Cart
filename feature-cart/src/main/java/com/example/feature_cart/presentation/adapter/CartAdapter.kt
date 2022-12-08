@@ -1,60 +1,61 @@
 package com.example.feature_cart.presentation.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
 import coil.transform.CircleCropTransformation
+import com.example.core.domain.interfaces.OnProductClick
 import com.example.feature_cart.data.model.Cart
 import com.example.feature_cart.databinding.ItemCartBinding
 
-class CartAdapter : ListAdapter<Cart, CartAdapter.CartHolder>(CartComparator()) {
+class CartAdapter(
+    private val onProductClick: OnProductClick<View, Cart>
+) : RecyclerView.Adapter<CartAdapter.CartViewHolder>() {
 
-    class CartHolder(
+    private val items = ArrayList<Cart>()
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartViewHolder {
+        val binding = ItemCartBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
+        )
+        return CartViewHolder(binding)
+    }
+
+    override fun onBindViewHolder(holder: CartViewHolder, position: Int) {
+        holder.bind(items[position])
+    }
+
+    override fun getItemCount() = items.size
+
+
+    inner class CartViewHolder(
         private val binding: ItemCartBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(cart: Cart) {
+        fun bind(entity: Cart) {
             binding.apply {
-                cartTitle.text = cart.cart_title
-                cartPrice.text = cart.cart_price
+                cartTitle.text = entity.details_title
+                cartPrice.text = entity.details_price
                 cartImage.load(
-                    cart.cart_images[0]
+                    entity.details_images?.get(0)
                 ) {
                     crossfade(true)
                     transformations(CircleCropTransformation())
                 }
-            }
-        }
-
-        companion object {
-            fun create(parent: ViewGroup): CartHolder {
-                return CartHolder(
-                    ItemCartBinding
-                        .inflate(LayoutInflater.from(parent.context), parent, false)
-                )
+                cartContainer.setOnClickListener {
+                    onProductClick.onProductClicked(it, entity)
+                }
             }
         }
     }
 
-    class CartComparator : DiffUtil.ItemCallback<Cart>() {
-        override fun areItemsTheSame(oldItem: Cart, newItem: Cart): Boolean {
-            return oldItem == newItem
-        }
-
-        override fun areContentsTheSame(oldItem: Cart, newItem: Cart): Boolean {
-            return oldItem == newItem
-        }
-
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartHolder {
-        return CartHolder.create(parent)
-    }
-
-    override fun onBindViewHolder(holder: CartHolder, position: Int) {
-        holder.bind(getItem(position))
+    fun setItems(data: List<Cart>) {
+        items.clear()
+        items.addAll(data)
+        notifyDataSetChanged()
     }
 
 }

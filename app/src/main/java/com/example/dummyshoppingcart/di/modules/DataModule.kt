@@ -27,4 +27,7 @@ abstract class DataModule {
     @Binds
     abstract fun provideDetailsRepository(repositoryDetails: RepositoryDetailsImpl): RepositoryDetails
 
+    @Singleton
+    @Binds
+    abstract fun provideCartRepository(repositoryDetails: CartRepositoryImpl): CartRepository
 }

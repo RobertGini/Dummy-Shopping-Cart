@@ -80,6 +80,10 @@ dependencies {
     implementation 'com.hannesdorfmann:adapterdelegates4:4.3.0'
     implementation 'com.hannesdorfmann:adapterdelegates4-kotlin-dsl-viewbinding:4.3.0'
 
+    //Firebase
+    implementation platform('com.google.firebase:firebase-bom:31.1.0')
+    implementation 'com.google.firebase:firebase-database-ktx:20.1.0'
+
     //Tests
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

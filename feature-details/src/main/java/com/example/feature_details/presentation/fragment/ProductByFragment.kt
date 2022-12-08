@@ -12,6 +12,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.core.domain.interfaces.OnProductClick
+import com.example.core.domain.interfaces.ToCartClick
 import com.example.core.utils.Status
 import com.example.feature_details.R
 import com.example.feature_details.databinding.FragmentProductByBinding
@@ -25,12 +26,14 @@ import javax.inject.Inject
 
 class ProductByFragment :
     DaggerFragment(R.layout.fragment_product_by),
-    OnProductClick<View, DetailsEntity>
-{
+    OnProductClick<View, DetailsEntity>,
+    ToCartClick<View, DetailsEntity> {
+
     private var _binding: FragmentProductByBinding? = null
     private val binding get() = _binding!!
 
     private var productListener: OnProductClick<View, DetailsEntity> = this
+    private var cartListener: ToCartClick<View, DetailsEntity> = this
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -55,7 +58,7 @@ class ProductByFragment :
         setupObservers(item)
     }
 
-    private fun setupObservers(productId: Int){
+    private fun setupObservers(productId: Int) {
         productByViewModel.getProductByCategory(productId).observe(viewLifecycleOwner) {
             it?.let { resource ->
                 when (resource.status) {
@@ -73,7 +76,7 @@ class ProductByFragment :
     }
 
     private fun setupAdapter(data: List<DetailsEntity>) {
-        val productAdapter = ProductByAdapter(productListener)
+        val productAdapter = ProductByAdapter(productListener, cartListener)
         binding.rcProductBy.apply {
             layoutManager =
                 GridLayoutManager(requireContext(), 2)
@@ -87,6 +90,11 @@ class ProductByFragment :
         val productId = productEntity.details_id.toInt()
         findNavController().deepLinkNavigateTo(DeepLinkDestination.Details(productId))
         Log.d(TAG, "Clicked")
+    }
+
+    //Add Item to Cart
+    override fun toCartClicked(view: View, entity: DetailsEntity) {
+        productByViewModel.addCart(entity)
     }
 
     override fun onDestroyView() {

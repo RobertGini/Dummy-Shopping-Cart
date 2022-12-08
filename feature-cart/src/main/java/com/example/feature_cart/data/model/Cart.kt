@@ -5,9 +5,9 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Cart(
-    var cart_id: String = "",
-    val cart_title: String = "",
-    val cart_price: String = "",
-    val cart_description: String = "",
-    val cart_images: List<String>,
+    var details_id: String? = null,
+    val details_title: String? = null,
+    val details_price: String? = null,
+    val details_description: String? = null,
+    val details_images: List<String>? = null,
 ) : Parcelable

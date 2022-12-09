@@ -27,9 +27,16 @@ class RepositoryDetailsImpl @Inject constructor(
             .push()
         reference
             .setValue(cart)
-        result.invoke(
-            Resource.success(cart)
-        )
+            .addOnSuccessListener {
+                result.invoke(
+                    Resource.success(cart)
+                )
+            }
+            .addOnFailureListener{
+                result.invoke(
+                    Resource.error(data = null, it.localizedMessage as String)
+                )
+            }
     }
 
     object FireDatabase {

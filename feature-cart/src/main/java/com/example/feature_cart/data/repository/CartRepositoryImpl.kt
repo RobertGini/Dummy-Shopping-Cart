@@ -23,6 +23,11 @@ class CartRepositoryImpl @Inject constructor(
                     Resource.success(carts)
                 )
             }
+            .addOnFailureListener{
+                result.invoke(
+                    Resource.error(data = null, it.localizedMessage as String)
+                )
+            }
     }
 
     object FireDatabase {

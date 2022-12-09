@@ -13,13 +13,15 @@ import com.example.navigation.Navigator
 import com.example.navigation.ToFlowNavigatable
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.android.support.DaggerAppCompatActivity
+import javax.inject.Inject
 
 class MainActivity : DaggerAppCompatActivity(), ToFlowNavigatable {
 
     private var _binding: ActivityMainBinding? = null
     private val binding get() = _binding!!
 
-    private val navigator: Navigator = Navigator()
+    @Inject
+    lateinit var navigator: Navigator
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

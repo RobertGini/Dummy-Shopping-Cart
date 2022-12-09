@@ -33,7 +33,6 @@ class ProductByAdapter(
 
     override fun getItemCount() = items.size
 
-
     inner class ProductViewHolder(
         private val binding: CategoryListBinding
     ): RecyclerView.ViewHolder(binding.root) {

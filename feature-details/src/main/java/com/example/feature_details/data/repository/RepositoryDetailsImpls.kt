@@ -13,12 +13,14 @@ class RepositoryDetailsImpl @Inject constructor(
     private val mapper: DetailsApiToEntity,
     private val database: FirebaseDatabase
 ) : RepositoryDetails {
+
     override suspend fun getProductsDetails(productId: Int): DetailsEntity =
         mapper.mapProduct(api.getProductsDetails(productId))
 
     override suspend fun getProductByCategory(productId: Int): List<DetailsEntity> =
         mapper.mappingProductResponse(api.getProductByCategory(productId))
 
+    //Add Product to Cart
     override suspend fun addCart(cart: DetailsEntity, result: (Resource<DetailsEntity>) -> Unit) {
         val reference = database.reference
             .child(FireDatabase.CART)

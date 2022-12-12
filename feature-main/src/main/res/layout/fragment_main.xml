@@ -16,4 +16,9 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/item_promo" />
 
+    <include
+        android:id="@+id/status_layout"
+        layout="@layout/item_status"
+        android:visibility="gone"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

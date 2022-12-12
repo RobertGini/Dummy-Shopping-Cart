@@ -5,8 +5,3 @@ enum class Status {
     ERROR,
     LOADING,
 }
-
-enum class AuthenticationState {
-    AUTHENTICATED,
-    UNAUTHENTICATED,
-}

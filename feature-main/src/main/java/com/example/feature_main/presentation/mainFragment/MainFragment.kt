@@ -16,7 +16,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.core.domain.interfaces.OnCategoryClick
 import com.example.core.domain.interfaces.OnProductClick
 import com.example.core.utils.Status
+import com.example.core.utils.gone
+import com.example.core.utils.show
 import com.example.data_products.domain.model.CategoryEntity
+import com.example.data_products.domain.model.DisplayableItem
 import com.example.data_products.domain.model.ProductEntity
 import com.example.dummyshoppingcart.presentation.adapter.MainAdapter
 import com.example.dummyshoppingcart.presentation.mainFragment.MainViewModel
@@ -58,8 +61,8 @@ class MainFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupAdapter()
         setupProduct()
+        setupAdapter()
         setupToolbarInFragment()
     }
 
@@ -81,16 +84,30 @@ class MainFragment :
             it?.let { resource ->
                 when (resource.status) {
                     Status.SUCCESS -> {
-                        mainAdapter.items = it.data
-                        mainAdapter.notifyDataSetChanged()
+                        resource.data?.let { data ->
+                            showData(data = data)
+                        }
                         Log.d(TAG, "${mainAdapter.items}")
                     }
                     Status.ERROR -> {
                     }
-                    Status.LOADING -> {
-                    }
+                    Status.LOADING -> { showLoading() }
                 }
             }
+        }
+    }
+
+    private fun showData(data: List<DisplayableItem>){
+        binding.statusLayout.root.gone()
+        binding.rcMain.show()
+        mainAdapter.items = data
+        mainAdapter.notifyDataSetChanged()
+    }
+
+    private fun showLoading() {
+        binding.statusLayout.apply {
+            root.show()
+            loading.show()
         }
     }
 

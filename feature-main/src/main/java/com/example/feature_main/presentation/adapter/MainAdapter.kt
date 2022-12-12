@@ -1,11 +1,11 @@
 package com.example.dummyshoppingcart.presentation.adapter
 
 import android.view.View
-import com.example.core.domain.interfaces.DisplayableItem
+import com.example.data_products.domain.model.DisplayableItem
 import com.example.core.domain.interfaces.OnCategoryClick
 import com.example.core.domain.interfaces.OnProductClick
-import com.example.dummyshoppingcart.domain.model.CategoryEntity
-import com.example.dummyshoppingcart.domain.model.ProductEntity
+import com.example.data_products.domain.model.CategoryEntity
+import com.example.data_products.domain.model.ProductEntity
 import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 
 class MainAdapter(

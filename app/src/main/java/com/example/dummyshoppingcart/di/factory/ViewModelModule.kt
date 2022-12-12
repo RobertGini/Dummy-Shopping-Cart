@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.core.di.ViewModelFactory
 import com.example.dummyshoppingcart.di.scopes.AppScoped
-import com.example.feature_main.presentation.catalogueFragment.CatalogueViewModel
+import com.example.feature_catalogue.presentation.viewModel.CatalogueViewModel
 import com.example.dummyshoppingcart.presentation.mainFragment.MainViewModel
 import com.example.feature_cart.presentation.viewModel.CartViewModel
 import com.example.feature_details.presentation.viewModel.ProductByViewModel

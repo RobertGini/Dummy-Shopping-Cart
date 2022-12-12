@@ -16,8 +16,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.core.domain.interfaces.OnCategoryClick
 import com.example.core.domain.interfaces.OnProductClick
 import com.example.core.utils.Status
-import com.example.dummyshoppingcart.domain.model.CategoryEntity
-import com.example.dummyshoppingcart.domain.model.ProductEntity
+import com.example.data_products.domain.model.CategoryEntity
+import com.example.data_products.domain.model.ProductEntity
 import com.example.dummyshoppingcart.presentation.adapter.MainAdapter
 import com.example.dummyshoppingcart.presentation.mainFragment.MainViewModel
 import com.example.feature_main.R

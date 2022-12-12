@@ -8,7 +8,7 @@ import coil.api.load
 import coil.transform.CircleCropTransformation
 import com.example.core.domain.interfaces.OnProductClick
 import com.example.core.domain.interfaces.ToCartClick
-import com.example.feature_details.databinding.CategoryListBinding
+import com.example.feature_details.databinding.ProductByListBinding
 import com.example.feature_details.domain.model.DetailsEntity
 
 class ProductByAdapter(
@@ -19,7 +19,7 @@ class ProductByAdapter(
     private val items = ArrayList<DetailsEntity>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
-        val binding = CategoryListBinding.inflate(
+        val binding = ProductByListBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false
@@ -34,7 +34,7 @@ class ProductByAdapter(
     override fun getItemCount() = items.size
 
     inner class ProductViewHolder(
-        private val binding: CategoryListBinding
+        private val binding: ProductByListBinding
     ): RecyclerView.ViewHolder(binding.root) {
         fun bind(entity: DetailsEntity)  {
             binding.apply {

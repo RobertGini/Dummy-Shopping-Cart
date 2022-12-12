@@ -6,9 +6,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
 import coil.transform.CircleCropTransformation
+import com.example.core.databinding.ItemCategoriesBinding
 import com.example.core.databinding.ItemListBinding
 import com.example.core.domain.interfaces.OnCategoryClick
-import com.example.dummyshoppingcart.domain.model.CategoryEntity
+import com.example.data_products.domain.model.CategoryEntity
 
 class CategoryAdapter(
     private val onCategoryClick: OnCategoryClick<View, CategoryEntity>
@@ -17,7 +18,7 @@ class CategoryAdapter(
     private val items = ArrayList<CategoryEntity>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
-        val binding = ItemListBinding.inflate(
+        val binding = ItemCategoriesBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false
@@ -32,7 +33,7 @@ class CategoryAdapter(
     override fun getItemCount() = items.size
 
     inner class CategoryViewHolder(
-        private val binding: ItemListBinding
+        private val binding: ItemCategoriesBinding
         ): RecyclerView.ViewHolder(binding.root) {
         fun bind(entity: CategoryEntity)  {
             binding.apply {

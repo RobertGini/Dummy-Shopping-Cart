@@ -14,5 +14,7 @@
     <string name="price">Price</string>
     <string name="search">Search</string>
     <string name="to_cart">To Cart</string>
+    <string name="available_products">Available products</string>
+    <string name="available_categories">List of all categories</string>
 
 </resources>

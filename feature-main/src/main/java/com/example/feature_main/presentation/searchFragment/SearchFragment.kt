@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.core.domain.interfaces.OnProductClick
 import com.example.core.utils.Status
-import com.example.dummyshoppingcart.domain.model.ProductEntity
+import com.example.data_products.domain.model.ProductEntity
 import com.example.feature_main.R
 import com.example.feature_main.databinding.FragmentSearchBinding
 import com.example.feature_main.presentation.adapter.SearchAdapter

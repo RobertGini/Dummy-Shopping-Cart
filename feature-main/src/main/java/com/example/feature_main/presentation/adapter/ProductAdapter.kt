@@ -8,7 +8,7 @@ import coil.api.load
 import coil.transform.CircleCropTransformation
 import com.example.core.databinding.ItemListBinding
 import com.example.core.domain.interfaces.OnProductClick
-import com.example.dummyshoppingcart.domain.model.ProductEntity
+import com.example.data_products.domain.model.ProductEntity
 
 class ProductAdapter(
     private val onProductClick: OnProductClick<View, ProductEntity>

@@ -1,7 +1,7 @@
 package com.example.dummyshoppingcart.di.modules
 
 import com.example.feature_details.data.api.DetailsApi
-import com.example.feature_main.data.api.MainApi
+import com.example.data_products.data.api.MainApi
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit

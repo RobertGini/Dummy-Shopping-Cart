@@ -5,14 +5,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.core.utils.Resource
-import com.example.feature_cart.data.model.Cart
-import com.example.feature_cart.domain.repository.CartRepository
+import com.example.data_details.domain.interfaces.RepositoryDetails
+import com.example.data_details.domain.model.Cart
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class CartViewModel @Inject constructor(
-    private val repository: CartRepository
+    private val repository: RepositoryDetails
 ) : ViewModel() {
 
     private val _carts = MutableLiveData<Resource<List<Cart>>>()

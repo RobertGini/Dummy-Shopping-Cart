@@ -14,9 +14,9 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.core.domain.interfaces.OnProductClick
 import com.example.core.domain.interfaces.ToCartClick
 import com.example.core.utils.Status
+import com.example.data_details.domain.model.DetailsEnitiy
 import com.example.feature_details.R
 import com.example.feature_details.databinding.FragmentProductByBinding
-import com.example.feature_details.domain.model.DetailsEntity
 import com.example.feature_details.presentation.adapter.ProductByAdapter
 import com.example.feature_details.presentation.viewModel.ProductByViewModel
 import com.example.navigation.DeepLinkDestination
@@ -26,14 +26,14 @@ import javax.inject.Inject
 
 class ProductByFragment :
     DaggerFragment(R.layout.fragment_product_by),
-    OnProductClick<View, DetailsEntity>,
-    ToCartClick<View, DetailsEntity> {
+    OnProductClick<View, DetailsEnitiy>,
+    ToCartClick<View, DetailsEnitiy> {
 
     private var _binding: FragmentProductByBinding? = null
     private val binding get() = _binding!!
 
-    private var productListener: OnProductClick<View, DetailsEntity> = this
-    private var cartListener: ToCartClick<View, DetailsEntity> = this
+    private var productListener: OnProductClick<View, DetailsEnitiy> = this
+    private var cartListener: ToCartClick<View, DetailsEnitiy> = this
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -75,7 +75,7 @@ class ProductByFragment :
         }
     }
 
-    private fun setupAdapter(data: List<DetailsEntity>) {
+    private fun setupAdapter(data: List<DetailsEnitiy>) {
         val productAdapter = ProductByAdapter(productListener, cartListener)
         binding.rcProductBy.apply {
             layoutManager =
@@ -86,14 +86,14 @@ class ProductByFragment :
         productAdapter.setItems(data)
     }
 
-    override fun onProductClicked(view: View, productEntity: DetailsEntity) {
-        val productId = productEntity.details_id.toInt()
+    override fun onProductClicked(view: View, productEntity: DetailsEnitiy) {
+        val productId = productEntity.details_id!!.toInt()
         findNavController().deepLinkNavigateTo(DeepLinkDestination.Details(productId))
         Log.d(TAG, "Clicked")
     }
 
     //Add Item to Cart
-    override fun toCartClicked(view: View, entity: DetailsEntity) {
+    override fun toCartClicked(view: View, entity: DetailsEnitiy) {
         productByViewModel.addCart(entity)
     }
 

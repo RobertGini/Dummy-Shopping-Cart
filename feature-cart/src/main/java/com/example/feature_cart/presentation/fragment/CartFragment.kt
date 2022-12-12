@@ -11,8 +11,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import com.example.core.domain.interfaces.OnProductClick
 import com.example.core.utils.Status
+import com.example.data_details.domain.model.Cart
 import com.example.feature_cart.R
-import com.example.feature_cart.data.model.Cart
 import com.example.feature_cart.databinding.FragmentCartBinding
 import com.example.feature_cart.presentation.adapter.CartAdapter
 import com.example.feature_cart.presentation.viewModel.CartViewModel

@@ -2,8 +2,8 @@ package com.example.feature_details.presentation.viewModel
 
 import androidx.lifecycle.*
 import com.example.core.utils.Resource
+import com.example.data_details.domain.model.DetailsEnitiy
 import com.example.feature_details.domain.iterator.DetailsIterator
-import com.example.feature_details.domain.model.DetailsEntity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -21,11 +21,11 @@ class ProductByViewModel @Inject constructor(
         }
     }
 
-    private val _addCart = MutableLiveData<Resource<DetailsEntity>>()
-    val addCart: LiveData<Resource<DetailsEntity>>
+    private val _addCart = MutableLiveData<Resource<DetailsEnitiy>>()
+    val addCart: LiveData<Resource<DetailsEnitiy>>
         get() = _addCart
 
-    fun addCart(cart: DetailsEntity) = viewModelScope.launch(Dispatchers.IO) {
+    fun addCart(cart: DetailsEnitiy) = viewModelScope.launch(Dispatchers.IO) {
         iterator.addCart(cart) { _addCart.value = it}
     }
 }

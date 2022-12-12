@@ -1,6 +1,6 @@
-package com.example.feature_details.data.api
+package com.example.data_details.data.api
 
-import com.example.feature_details.data.model.ProductDetails
+import com.example.data_details.data.model.ProductDetails
 import retrofit2.http.GET
 import retrofit2.http.Path
 

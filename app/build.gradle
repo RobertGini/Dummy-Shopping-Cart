@@ -47,8 +47,12 @@ dependencies {
     implementation project(':feature-main')
     implementation project(':feature-details')
     implementation project(':feature-catalogue')
+
     implementation project(':navigation')
+
     implementation project(':data-products')
+    implementation project(':data-details')
+
 
 
     implementation 'androidx.core:core-ktx:1.7.0'

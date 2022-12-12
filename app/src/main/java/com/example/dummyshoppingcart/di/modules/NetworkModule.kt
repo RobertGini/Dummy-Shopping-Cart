@@ -1,6 +1,6 @@
 package com.example.dummyshoppingcart.di.modules
 
-import com.example.feature_details.data.api.DetailsApi
+import com.example.data_details.data.api.DetailsApi
 import com.example.data_products.data.api.MainApi
 import dagger.Module
 import dagger.Provides

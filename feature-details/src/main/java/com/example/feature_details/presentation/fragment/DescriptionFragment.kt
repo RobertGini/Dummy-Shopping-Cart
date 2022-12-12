@@ -10,9 +10,9 @@ import androidx.navigation.fragment.navArgs
 import coil.api.load
 import coil.transform.CircleCropTransformation
 import com.example.core.utils.Status
+import com.example.data_details.domain.model.DetailsEnitiy
 import com.example.feature_details.R
 import com.example.feature_details.databinding.FragmentDescriptionBinding
-import com.example.feature_details.domain.model.DetailsEntity
 import com.example.feature_details.presentation.viewModel.DescriptionViewModel
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
@@ -67,13 +67,13 @@ class DescriptionFragment : DaggerFragment(R.layout.fragment_description) {
         setupObservers(item)
     }
 
-    private fun setUI(entity: DetailsEntity) {
+    private fun setUI(entity: DetailsEnitiy) {
         binding.apply {
             descTitle.text = entity.details_title
             descPrice.text = entity.details_price
             descDescription.text = entity.details_description
             descImage.load(
-                entity.details_images[0]
+                entity.details_images?.get(0)
             ){
                 crossfade(true)
                 //placeholder(R.mipmap.ic_launcher)

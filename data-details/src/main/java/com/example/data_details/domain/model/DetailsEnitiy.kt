@@ -1,6 +1,6 @@
-package com.example.feature_details.domain.model
+package com.example.data_details.domain.model
 
-data class DetailsEntity(
+data class DetailsEnitiy(
     val details_id: String = "",
     val details_title: String = "",
     val details_price: String = "",

@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
 import coil.transform.CircleCropTransformation
 import com.example.core.domain.interfaces.OnProductClick
-import com.example.feature_cart.data.model.Cart
+import com.example.data_details.domain.model.Cart
 import com.example.feature_cart.databinding.ItemCartBinding
 
 class CartAdapter(

@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.core.domain.interfaces.OnCategoryClick
 import com.example.core.utils.Status
+import com.example.core.utils.gone
+import com.example.core.utils.show
 import com.example.data_products.domain.model.CategoryEntity
 import com.example.feature_catalogue.R
 import com.example.feature_catalogue.databinding.FragmentCatalogueBinding
@@ -53,15 +55,28 @@ class CatalogueFragment :
             it?.let { resource ->
                 when (resource.status) {
                     Status.SUCCESS -> {
-                        val data = resource.data!!
-                        setupAdapter(data)
+                        resource.data?.let { data ->
+                            showData(data = data)
+                        }
                     }
                     Status.ERROR -> {
                     }
-                    Status.LOADING -> {
-                    }
+                    Status.LOADING -> { showLoading() }
                 }
             }
+        }
+    }
+
+    private fun showData(data: List<CategoryEntity>){
+        binding.statusLayout.root.gone()
+        binding.rcCatalogue.show()
+        setupAdapter(data)
+    }
+
+    private fun showLoading() {
+        binding.statusLayout.apply {
+            root.show()
+            loading.show()
         }
     }
 
@@ -74,6 +89,7 @@ class CatalogueFragment :
             itemAnimator = DefaultItemAnimator()
         }
         categoryAdapter.setItems(data)
+        categoryAdapter.notifyDataSetChanged()
     }
 
     override fun onCategoryClick(view: View, categoryEntity: CategoryEntity) {

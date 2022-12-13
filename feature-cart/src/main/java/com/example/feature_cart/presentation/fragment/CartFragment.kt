@@ -11,6 +11,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import com.example.core.domain.interfaces.OnProductClick
 import com.example.core.utils.Status
+import com.example.core.utils.gone
+import com.example.core.utils.show
 import com.example.data_details.domain.model.Cart
 import com.example.feature_cart.R
 import com.example.feature_cart.databinding.FragmentCartBinding
@@ -57,13 +59,14 @@ class CartFragment :
             it?.let { resource ->
                 when (resource.status) {
                     Status.SUCCESS -> {
-                        cartAdapter.setItems(it.data!!)
-                        Log.d(TAG, "${it.data}")
+                        resource.data?.let { data ->
+                            showData(data = data)
+                            Log.d(TAG, "$data")
+                        }
                     }
                     Status.ERROR -> {
                     }
-                    Status.LOADING -> {
-                    }
+                    Status.LOADING -> { showLoading() }
                 }
             }
         }
@@ -73,6 +76,20 @@ class CartFragment :
         binding.rcCart.apply {
             adapter =  cartAdapter
             itemAnimator = DefaultItemAnimator()
+        }
+    }
+
+    private fun showData(data: List<Cart>){
+        binding.statusLayout.root.gone()
+        binding.rcCart.show()
+        cartAdapter.setItems(data)
+        cartAdapter.notifyDataSetChanged()
+    }
+
+    private fun showLoading() {
+        binding.statusLayout.apply {
+            root.show()
+            loading.show()
         }
     }
 

@@ -70,4 +70,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/desc_holder" />
 
+    <include
+        android:id="@+id/status_layout"
+        layout="@layout/item_status"
+        android:visibility="gone"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

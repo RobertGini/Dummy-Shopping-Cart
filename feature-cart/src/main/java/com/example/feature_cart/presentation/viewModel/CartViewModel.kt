@@ -1,9 +1,6 @@
 package com.example.feature_cart.presentation.viewModel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.example.core.utils.Resource
 import com.example.data_details.domain.interfaces.RepositoryDetails
 import com.example.data_details.domain.model.Cart
@@ -20,7 +17,7 @@ class CartViewModel @Inject constructor(
         get() = _carts
 
     fun getCart() = viewModelScope.launch(Dispatchers.IO) {
+        _carts.postValue(Resource.loading(data = null))
         repository.getCart { _carts.value = it }
     }
-
 }

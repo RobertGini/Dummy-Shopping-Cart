@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.core.domain.interfaces.OnProductClick
 import com.example.core.domain.interfaces.ToCartClick
 import com.example.core.utils.Status
+import com.example.core.utils.gone
+import com.example.core.utils.show
 import com.example.data_details.domain.model.DetailsEnitiy
 import com.example.feature_details.R
 import com.example.feature_details.databinding.FragmentProductByBinding
@@ -63,15 +65,28 @@ class ProductByFragment :
             it?.let { resource ->
                 when (resource.status) {
                     Status.SUCCESS -> {
-                        val data = resource.data!!
-                        setupAdapter(data)
+                        resource.data?.let { data ->
+                            showData(data = data)
+                        }
                     }
                     Status.ERROR -> {
                     }
-                    Status.LOADING -> {
-                    }
+                    Status.LOADING -> { showLoading() }
                 }
             }
+        }
+    }
+
+    private fun showData(data: List<DetailsEnitiy>){
+        binding.statusLayout.root.gone()
+        binding.rcProductBy.show()
+        setupAdapter(data)
+    }
+
+    private fun showLoading() {
+        binding.statusLayout.apply {
+            root.show()
+            loading.show()
         }
     }
 
@@ -84,10 +99,11 @@ class ProductByFragment :
             itemAnimator = DefaultItemAnimator()
         }
         productAdapter.setItems(data)
+        productAdapter.notifyDataSetChanged()
     }
 
     override fun onProductClicked(view: View, productEntity: DetailsEnitiy) {
-        val productId = productEntity.details_id!!.toInt()
+        val productId = productEntity.details_id.toInt()
         findNavController().deepLinkNavigateTo(DeepLinkDestination.Details(productId))
         Log.d(TAG, "Clicked")
     }

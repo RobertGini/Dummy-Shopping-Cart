@@ -10,6 +10,8 @@ import androidx.navigation.fragment.navArgs
 import coil.api.load
 import coil.transform.CircleCropTransformation
 import com.example.core.utils.Status
+import com.example.core.utils.gone
+import com.example.core.utils.show
 import com.example.data_details.domain.model.DetailsEnitiy
 import com.example.feature_details.R
 import com.example.feature_details.databinding.FragmentDescriptionBinding
@@ -49,15 +51,29 @@ class DescriptionFragment : DaggerFragment(R.layout.fragment_description) {
             it?.let { resource ->
                 when (resource.status) {
                     Status.SUCCESS -> {
-                        val data = resource.data!!
-                        setUI(data)
+                        resource.data?.let { data ->
+                            showData(data = data)
+                        }
                     }
                     Status.ERROR -> {
                     }
-                    Status.LOADING -> {
-                    }
+                    Status.LOADING -> { showLoading() }
                 }
             }
+        }
+    }
+
+    private fun showData(data: DetailsEnitiy){
+        binding.statusLayout.root.gone()
+        setUI(data)
+        binding.root.show()
+    }
+
+    private fun showLoading() {
+        binding.root.gone()
+        binding.statusLayout.apply {
+            root.show()
+            loading.show()
         }
     }
 
@@ -76,13 +92,8 @@ class DescriptionFragment : DaggerFragment(R.layout.fragment_description) {
                 entity.details_images?.get(0)
             ){
                 crossfade(true)
-                //placeholder(R.mipmap.ic_launcher)
                 transformations(CircleCropTransformation())
             }
         }
-    }
-
-    companion object {
-        fun newInstance() = DescriptionFragment()
     }
 }

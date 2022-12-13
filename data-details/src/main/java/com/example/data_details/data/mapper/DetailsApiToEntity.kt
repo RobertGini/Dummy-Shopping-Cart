@@ -22,7 +22,7 @@ class DetailsApiToEntity @Inject constructor(){
         return DetailsEnitiy(
             details_id = response.details_id.toString(),
             details_title = response.details_title.toString(),
-            details_price = response.details_price.toString(),
+            details_price = response.details_price.toString() + "$",
             details_description = response.details_description.toString(),
             details_images = response.details_images!!
         )

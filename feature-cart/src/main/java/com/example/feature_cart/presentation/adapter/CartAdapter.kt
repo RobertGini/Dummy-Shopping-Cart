@@ -7,14 +7,14 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
 import coil.transform.CircleCropTransformation
 import com.example.core.domain.interfaces.OnProductClick
-import com.example.data_details.domain.model.Cart
+import com.example.data_details.domain.model.DetailsEnitiy
 import com.example.feature_cart.databinding.ItemCartBinding
 
 class CartAdapter(
-    private val onProductClick: OnProductClick<View, Cart>
+    private val onProductClick: OnProductClick<View, DetailsEnitiy>
 ) : RecyclerView.Adapter<CartAdapter.CartViewHolder>() {
 
-    private val items = ArrayList<Cart>()
+    private val items = ArrayList<DetailsEnitiy>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartViewHolder {
         val binding = ItemCartBinding.inflate(
@@ -35,12 +35,12 @@ class CartAdapter(
     inner class CartViewHolder(
         private val binding: ItemCartBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(entity: Cart) {
+        fun bind(entity: DetailsEnitiy) {
             binding.apply {
                 cartTitle.text = entity.details_title
                 cartPrice.text = entity.details_price
                 cartImage.load(
-                    entity.details_images?.get(0)
+                    entity.details_images[0]
                 ) {
                     crossfade(true)
                     transformations(CircleCropTransformation())
@@ -52,7 +52,7 @@ class CartAdapter(
         }
     }
 
-    fun setItems(data: List<Cart>) {
+    fun setItems(data: List<DetailsEnitiy>) {
         items.clear()
         items.addAll(data)
         notifyDataSetChanged()

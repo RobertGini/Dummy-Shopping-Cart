@@ -20,7 +20,7 @@ class ResponseDataMapper @Inject constructor() {
 
     @Singleton
     @Provides
-    fun mapProduct(response: ProductResponse): ProductEntity {
+    internal fun mapProduct(response: ProductResponse): ProductEntity {
         return ProductEntity(
             product_id = response.product_id.toString(),
             product_title = response.product_title.toString(),
@@ -38,7 +38,7 @@ class ResponseDataMapper @Inject constructor() {
 
     @Singleton
     @Provides
-    fun mapCategory(response: CategoryResponse): CategoryEntity {
+    internal fun mapCategory(response: CategoryResponse): CategoryEntity {
         return CategoryEntity(
             category_id = response.category_id.toString(),
             category_image = response.category_image.toString(),

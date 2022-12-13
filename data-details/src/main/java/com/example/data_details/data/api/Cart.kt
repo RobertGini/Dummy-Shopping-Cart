@@ -1,4 +1,4 @@
-package com.example.data_details.domain.model
+package com.example.data_details.data.api
 
 data class Cart(
     var details_id: String? = null,

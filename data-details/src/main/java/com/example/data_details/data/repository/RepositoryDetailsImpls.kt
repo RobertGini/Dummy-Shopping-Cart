@@ -1,10 +1,10 @@
 package com.example.feature_details.data.repository
 
 import com.example.core.utils.Resource
+import com.example.data_details.data.api.Cart
 import com.example.data_details.data.api.DetailsApi
 import com.example.data_details.data.mapper.DetailsApiToEntity
 import com.example.data_details.domain.interfaces.RepositoryDetails
-import com.example.data_details.domain.model.Cart
 import com.example.data_details.domain.model.DetailsEnitiy
 import com.google.firebase.database.FirebaseDatabase
 import javax.inject.Inject
@@ -40,7 +40,8 @@ class RepositoryDetailsImpl @Inject constructor(
             }
     }
 
-    override suspend fun getCart(result: (Resource<List<Cart>>) -> Unit) {
+    //Get Cart data from database
+    override suspend fun getCart(result: (Resource<List<DetailsEnitiy>>) -> Unit) {
         val reference = database.reference.child(FireDatabase.CART)
         reference.get()
             .addOnSuccessListener {
@@ -50,7 +51,7 @@ class RepositoryDetailsImpl @Inject constructor(
                     carts.add(cart!!)
                 }
                 result.invoke(
-                    Resource.success(carts)
+                    Resource.success(mapper.mappingDatabaseResponse(carts))
                 )
             }
             .addOnFailureListener{

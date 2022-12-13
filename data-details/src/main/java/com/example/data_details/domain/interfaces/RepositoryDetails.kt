@@ -1,7 +1,6 @@
 package com.example.data_details.domain.interfaces
 
 import com.example.core.utils.Resource
-import com.example.data_details.domain.model.Cart
 import com.example.data_details.domain.model.DetailsEnitiy
 
 interface RepositoryDetails {
@@ -11,5 +10,5 @@ interface RepositoryDetails {
 
     suspend fun addCart(cart: DetailsEnitiy, result: (Resource<DetailsEnitiy>) -> Unit)
 
-    suspend fun getCart(result: (Resource<List<Cart>>) -> Unit)
+    suspend fun getCart(result: (Resource<List<DetailsEnitiy>>) -> Unit)
 }

@@ -13,7 +13,7 @@ import com.example.core.domain.interfaces.OnProductClick
 import com.example.core.utils.Status
 import com.example.core.utils.gone
 import com.example.core.utils.show
-import com.example.data_details.domain.model.Cart
+import com.example.data_details.domain.model.DetailsEnitiy
 import com.example.feature_cart.R
 import com.example.feature_cart.databinding.FragmentCartBinding
 import com.example.feature_cart.presentation.adapter.CartAdapter
@@ -25,12 +25,12 @@ import javax.inject.Inject
 
 class CartFragment :
     DaggerFragment(R.layout.fragment_cart),
-    OnProductClick<View, Cart> {
+    OnProductClick<View, DetailsEnitiy> {
 
     private var _binding: FragmentCartBinding? = null
     private val binding get() = _binding!!
 
-    private var productListener: OnProductClick<View, Cart> = this
+    private var productListener: OnProductClick<View, DetailsEnitiy> = this
     private val cartAdapter  by lazy {
         CartAdapter(productListener)
     }
@@ -79,7 +79,7 @@ class CartFragment :
         }
     }
 
-    private fun showData(data: List<Cart>){
+    private fun showData(data: List<DetailsEnitiy>){
         binding.statusLayout.root.gone()
         binding.rcCart.show()
         cartAdapter.setItems(data)
@@ -93,8 +93,8 @@ class CartFragment :
         }
     }
 
-    override fun onProductClicked(view: View, productEntity: Cart) {
-        val productId = productEntity.details_id!!.toInt()
+    override fun onProductClicked(view: View, productEntity: DetailsEnitiy) {
+        val productId = productEntity.details_id.toInt()
         findNavController().deepLinkNavigateTo(DeepLinkDestination.Details(productId))
         Log.d(TAG, "Clicked on Product")
     }

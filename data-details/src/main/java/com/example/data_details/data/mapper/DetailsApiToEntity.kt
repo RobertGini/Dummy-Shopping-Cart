@@ -1,5 +1,6 @@
 package com.example.data_details.data.mapper
 
+import com.example.data_details.data.api.Cart
 import com.example.data_details.data.model.ProductDetails
 import com.example.data_details.domain.model.DetailsEnitiy
 import dagger.Module
@@ -18,7 +19,25 @@ class DetailsApiToEntity @Inject constructor(){
 
     @Singleton
     @Provides
-    fun mapProduct(response: ProductDetails): DetailsEnitiy {
+    internal fun mapProduct(response: ProductDetails): DetailsEnitiy {
+        return DetailsEnitiy(
+            details_id = response.details_id.toString(),
+            details_title = response.details_title.toString(),
+            details_price = response.details_price.toString() + "$",
+            details_description = response.details_description.toString(),
+            details_images = response.details_images!!
+        )
+    }
+
+    @Singleton
+    @Provides
+    fun mappingDatabaseResponse(response: List<Cart>): List<DetailsEnitiy> {
+        return response.map { mapCartToDetails(it) }
+    }
+
+    @Singleton
+    @Provides
+    internal fun mapCartToDetails(response: Cart): DetailsEnitiy {
         return DetailsEnitiy(
             details_id = response.details_id.toString(),
             details_title = response.details_title.toString(),

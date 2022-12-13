@@ -7,7 +7,7 @@
     <string name="cart">Cart</string>
     <string name="title">title</string>
     <string name="description">Description</string>
-    <string name="specifications">Specifications</string>
+    <string name="specifications">Specifications:</string>
     <string name="image">Image of object</string>
     <string name="back">Back</string>
     <string name="products">Products</string>

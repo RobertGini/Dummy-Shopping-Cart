@@ -57,5 +57,4 @@ class CartAdapter(
         items.addAll(data)
         notifyDataSetChanged()
     }
-
 }

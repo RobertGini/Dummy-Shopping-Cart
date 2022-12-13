@@ -105,6 +105,7 @@ class MainFragment :
     }
 
     private fun showLoading() {
+        binding.rcMain.gone()
         binding.statusLayout.apply {
             root.show()
             loading.show()

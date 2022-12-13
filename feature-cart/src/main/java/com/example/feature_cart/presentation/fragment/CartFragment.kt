@@ -82,16 +82,20 @@ class CartFragment :
     }
 
     private fun showData(data: List<DetailsEnitiy>){
-        binding.statusLayout.root.gone()
-        binding.rcCart.show()
         cartAdapter.setItems(data)
-
         cartAdapter.notifyDataSetChanged()
-        binding.containerOfCard.show()
+        binding.apply {
+            statusLayout.root.gone()
+            rcCart.show()
+            containerOfCard.show()
+        }
     }
 
     private fun showLoading() {
-        binding.containerOfCard.gone()
+        binding.apply {
+            containerOfCard.gone()
+            rcCart.gone()
+        }
         binding.statusLayout.apply {
             root.show()
             loading.show()

@@ -40,8 +40,10 @@ class RepositoryDetailsImpl @Inject constructor(
             }
     }
 
-    //Get Cart data from database
-    override suspend fun getCart(result: (Resource<List<DetailsEnitiy>>) -> Unit) {
+    override suspend fun getCarts(
+        result:(Resource<List<DetailsEnitiy>>) -> Unit,
+        resultSum: (Resource<String>) -> Unit
+    ) {
         val reference = database.reference.child(FireDatabase.CART)
         reference.get()
             .addOnSuccessListener {
@@ -50,27 +52,12 @@ class RepositoryDetailsImpl @Inject constructor(
                     val cart = item.getValue(Cart::class.java)
                     carts.add(cart!!)
                 }
+                //Get Cart data from database
                 result.invoke(
                     Resource.success(mapper.mappingDatabaseResponse(carts))
                 )
-            }
-            .addOnFailureListener {
-                result.invoke(
-                    Resource.error(data = null, it.localizedMessage as String)
-                )
-            }
-    }
-
-    override suspend fun getSumCarts(result: (Resource<String>) -> Unit) {
-        val reference = database.reference.child(FireDatabase.CART)
-        reference.get()
-            .addOnSuccessListener {
-                val carts = ArrayList<Cart>()
-                for (item in it.children) {
-                    val cart = item.getValue(Cart::class.java)
-                    carts.add(cart!!)
-                }
-                result.invoke(
+                //Get sum of all cart items
+                resultSum.invoke(
                     Resource.success(mapper.sumOfCarts(carts))
                 )
             }

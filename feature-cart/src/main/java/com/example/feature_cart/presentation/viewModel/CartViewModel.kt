@@ -25,7 +25,6 @@ class CartViewModel @Inject constructor(
 
     fun getCart() = viewModelScope.launch(Dispatchers.IO) {
         _carts.postValue(Resource.loading(data = null))
-        repository.getCart { _carts.value = it }
-        repository.getSumCarts { _sumCarts.value = it }
+        repository.getCarts({ _carts.value = it}, { _sumCarts.value = it })
     }
 }

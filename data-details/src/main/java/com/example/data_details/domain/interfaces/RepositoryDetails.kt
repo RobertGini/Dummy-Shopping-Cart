@@ -10,7 +10,8 @@ interface RepositoryDetails {
 
     suspend fun addCart(cart: DetailsEnitiy, result: (Resource<DetailsEnitiy>) -> Unit)
 
-    suspend fun getCart(result: (Resource<List<DetailsEnitiy>>) -> Unit)
-
-    suspend fun getSumCarts(result: (Resource<String>) -> Unit)
+    suspend fun getCarts(
+        result:(Resource<List<DetailsEnitiy>>) -> Unit,
+        resultSum: (Resource<String>) -> Unit
+    )
 }

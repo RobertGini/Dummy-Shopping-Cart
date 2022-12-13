@@ -54,7 +54,27 @@ class RepositoryDetailsImpl @Inject constructor(
                     Resource.success(mapper.mappingDatabaseResponse(carts))
                 )
             }
-            .addOnFailureListener{
+            .addOnFailureListener {
+                result.invoke(
+                    Resource.error(data = null, it.localizedMessage as String)
+                )
+            }
+    }
+
+    override suspend fun getSumCarts(result: (Resource<String>) -> Unit) {
+        val reference = database.reference.child(FireDatabase.CART)
+        reference.get()
+            .addOnSuccessListener {
+                val carts = ArrayList<Cart>()
+                for (item in it.children) {
+                    val cart = item.getValue(Cart::class.java)
+                    carts.add(cart!!)
+                }
+                result.invoke(
+                    Resource.success(mapper.sumOfCarts(carts))
+                )
+            }
+            .addOnFailureListener {
                 result.invoke(
                     Resource.error(data = null, it.localizedMessage as String)
                 )

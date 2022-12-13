@@ -53,6 +53,7 @@ class CartFragment :
         getData()
     }
 
+    //Getting data to display on recyclerView
     private fun getData() {
         cartViewModel.getCart()
         cartViewModel.carts.observe(viewLifecycleOwner) {
@@ -83,7 +84,7 @@ class CartFragment :
         binding.statusLayout.root.gone()
         binding.rcCart.show()
         cartAdapter.setItems(data)
-        sumOfCarts(data)
+        sumOfCarts()
         cartAdapter.notifyDataSetChanged()
         binding.containerOfCard.show()
     }
@@ -103,12 +104,22 @@ class CartFragment :
     }
 
     //Getting Amount of money
-    private fun sumOfCarts(data: List<DetailsEnitiy>){
-        val sumCart = data.sumOf {
-            it.details_price.dropLast(1).toInt()
+    private fun sumOfCarts() {
+        cartViewModel.sumCarts.observe(viewLifecycleOwner){
+                it?.let { resource ->
+                    when (resource.status) {
+                        Status.SUCCESS -> {
+                            resource.data?.let { data ->
+                                binding.sumOfProducts.text = data
+                                Log.d(TAG, data)
+                            }
+                        }
+                        Status.ERROR -> {
+                        }
+                        Status.LOADING -> { showLoading() }
+                    }
+                }
         }
-            .toString() + getString(R.string.dollar)
-        binding.sumOfProducts.text = sumCart
     }
 
     override fun onDestroyView() {

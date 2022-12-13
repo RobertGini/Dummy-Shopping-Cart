@@ -9,7 +9,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Module
-class DetailsApiToEntity @Inject constructor(){
+class DetailsApiToEntity @Inject constructor() {
 
     @Singleton
     @Provides
@@ -19,7 +19,7 @@ class DetailsApiToEntity @Inject constructor(){
 
     @Singleton
     @Provides
-    internal fun mapProduct(response: ProductDetails): DetailsEnitiy {
+    fun mapProduct(response: ProductDetails): DetailsEnitiy {
         return DetailsEnitiy(
             details_id = response.details_id.toString(),
             details_title = response.details_title.toString(),
@@ -37,7 +37,7 @@ class DetailsApiToEntity @Inject constructor(){
 
     @Singleton
     @Provides
-    internal fun mapCartToDetails(response: Cart): DetailsEnitiy {
+    fun mapCartToDetails(response: Cart): DetailsEnitiy {
         return DetailsEnitiy(
             details_id = response.details_id.toString(),
             details_title = response.details_title.toString(),
@@ -45,5 +45,15 @@ class DetailsApiToEntity @Inject constructor(){
             details_description = response.details_description.toString(),
             details_images = response.details_images!!
         )
+    }
+
+    @Singleton
+    @Provides
+    fun sumOfCarts(response: List<Cart>): String {
+        val sumCart = response.sumOf {
+            it.details_price?.dropLast(1)?.toInt() ?: 0
+        }
+            .toString() + "$"
+        return sumCart
     }
 }

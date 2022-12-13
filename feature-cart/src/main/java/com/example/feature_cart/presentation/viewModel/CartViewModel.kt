@@ -5,10 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.core.utils.Resource
-import com.example.core.utils.ResourceProvider
 import com.example.data_details.domain.interfaces.RepositoryDetails
 import com.example.data_details.domain.model.DetailsEnitiy
-import com.example.feature_cart.R
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -21,8 +19,13 @@ class CartViewModel @Inject constructor(
     val carts: LiveData<Resource<List<DetailsEnitiy>>>
         get() = _carts
 
+    private val _sumCarts = MutableLiveData<Resource<String>>()
+    val sumCarts: LiveData<Resource<String>>
+        get() = _sumCarts
+
     fun getCart() = viewModelScope.launch(Dispatchers.IO) {
         _carts.postValue(Resource.loading(data = null))
         repository.getCart { _carts.value = it }
+        repository.getSumCarts { _sumCarts.value = it }
     }
 }

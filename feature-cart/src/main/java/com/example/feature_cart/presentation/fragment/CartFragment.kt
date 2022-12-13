@@ -71,6 +71,7 @@ class CartFragment :
                 }
             }
         }
+        sumOfCarts()
     }
 
     private fun setupAdapter() {
@@ -84,7 +85,7 @@ class CartFragment :
         binding.statusLayout.root.gone()
         binding.rcCart.show()
         cartAdapter.setItems(data)
-        sumOfCarts()
+
         cartAdapter.notifyDataSetChanged()
         binding.containerOfCard.show()
     }

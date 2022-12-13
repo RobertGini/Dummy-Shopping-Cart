@@ -66,11 +66,11 @@ class DescriptionFragment : DaggerFragment(R.layout.fragment_description) {
     private fun showData(data: DetailsEnitiy){
         binding.statusLayout.root.gone()
         setUI(data)
-        binding.root.show()
+        binding.detailsContainer.show()
     }
 
     private fun showLoading() {
-        binding.root.gone()
+        binding.detailsContainer.gone()
         binding.statusLayout.apply {
             root.show()
             loading.show()

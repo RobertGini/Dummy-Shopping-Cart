@@ -83,10 +83,13 @@ class CartFragment :
         binding.statusLayout.root.gone()
         binding.rcCart.show()
         cartAdapter.setItems(data)
+        sumOfCarts(data)
         cartAdapter.notifyDataSetChanged()
+        binding.containerOfCard.show()
     }
 
     private fun showLoading() {
+        binding.containerOfCard.gone()
         binding.statusLayout.apply {
             root.show()
             loading.show()
@@ -99,6 +102,15 @@ class CartFragment :
         Log.d(TAG, "Clicked on Product")
     }
 
+    //Getting Amount of money
+    private fun sumOfCarts(data: List<DetailsEnitiy>){
+        val sumCart = data.sumOf {
+            it.details_price.dropLast(1).toInt()
+        }
+            .toString() + getString(R.string.dollar)
+        binding.sumOfProducts.text = sumCart
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
@@ -106,8 +118,5 @@ class CartFragment :
 
     companion object {
         private const val TAG = "CartFragment"
-        fun newInstance() = CartFragment()
     }
-
-
 }

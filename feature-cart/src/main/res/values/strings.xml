@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="database_location">https://dummy-shopping-cart-default-rtdb.europe-west1.firebasedatabase.app</string>
+    <string name="purchase">Purchase</string>
+    <string name="dollar">$</string>
+
 </resources>

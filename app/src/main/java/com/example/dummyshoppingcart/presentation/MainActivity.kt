@@ -1,4 +1,4 @@
-package com.example.core.presentation.activity
+package com.example.dummyshoppingcart.presentation
 
 import android.os.Bundle
 import androidx.navigation.findNavController
@@ -6,8 +6,8 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.example.core.R
-import com.example.core.databinding.ActivityMainBinding
+import com.example.dummyshoppingcart.R
+import com.example.dummyshoppingcart.databinding.ActivityMainBinding
 import com.example.navigation.NavigationFlow
 import com.example.navigation.Navigator
 import com.example.navigation.ToFlowNavigatable

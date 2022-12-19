@@ -10,7 +10,7 @@
         android:id="@+id/rc_catalogue"
         android:layout_width="0dp"
         android:layout_marginStart="20dp"
-        android:layout_height="match_parent"
+        android:layout_height="510dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

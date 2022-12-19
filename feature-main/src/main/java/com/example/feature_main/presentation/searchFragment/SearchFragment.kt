@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.core.domain.interfaces.OnProductClick
 import com.example.core.utils.Status
+import com.example.core.utils.gone
+import com.example.core.utils.show
 import com.example.data_products.domain.model.ProductEntity
 import com.example.feature_main.R
 import com.example.feature_main.databinding.FragmentSearchBinding
@@ -58,13 +60,14 @@ class SearchFragment :
             it?.let { resource ->
                 when (resource.status) {
                     Status.SUCCESS -> {
-                        val data = resource.data!!
-                        setupAdapter(data)
+                        resource.data?.let { data ->
+                            showData(data = data)
+                        }
+                        Log.d(TAG, "${resource.data}")
                     }
                     Status.ERROR -> {
                     }
-                    Status.LOADING -> {
-                    }
+                    Status.LOADING -> { showLoading() }
                 }
             }
         }
@@ -79,6 +82,15 @@ class SearchFragment :
         }
         searchAdapter.setItems(data)
         searchAdapter.notifyDataSetChanged()
+    }
+
+    private fun showData(data: List<ProductEntity>){
+        binding.rcSearch.show()
+        setupAdapter(data)
+    }
+
+    private fun showLoading() {
+        binding.rcSearch.gone()
     }
 
     private fun setupToolbarInFragment() {
@@ -113,7 +125,7 @@ class SearchFragment :
                 return when (menuItem.itemId) {
                     R.id.toolbar_search -> {
                         Log.d(TAG, "Clicked on ItemMenu")
-                        true
+                        false
                     }
                     else -> false
                 }
